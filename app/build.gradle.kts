@@ -88,5 +88,21 @@ dependencies {
     ksp(libs.hilt.android.compiler.v248)
     implementation(libs.androidx.hilt.navigation.compose)
 
+    // compose
+    implementation (libs.androidx.navigation.compose)
+    implementation (libs.androidx.constraintlayout.compose)
+    implementation (libs.toolbar.compose)
+
+    // lottie
+    implementation (libs.lottie.compose)
+
+    // coil
+    implementation(libs.coil.compose)
+
+    // swiper
+    implementation (libs.accompanist.swiperefresh)
+
+    // system ui controller
+    implementation (libs.accompanist.systemuicontroller)
 
 }
