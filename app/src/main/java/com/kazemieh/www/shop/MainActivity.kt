@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.Scaffold
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.kazemieh.www.shop.navigation.BottomNavigationBar
 import com.kazemieh.www.shop.navigation.SetupNavGraph
 import com.kazemieh.www.shop.ui.theme.ShopTheme
 
@@ -22,7 +23,11 @@ class MainActivity : ComponentActivity() {
                 navController = rememberNavController()
                 Scaffold(
                     bottomBar = {
-                        // todo bottom bar
+                        BottomNavigationBar(
+                            navController = navController,
+                            onItemClick = {
+                                navController.navigate(it.route)
+                            })
                     }
                 ) {
                     SetupNavGraph(navController = navController)
