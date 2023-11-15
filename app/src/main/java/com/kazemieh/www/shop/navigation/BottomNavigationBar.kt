@@ -1,6 +1,8 @@
 package com.kazemieh.www.shop.navigation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -10,10 +12,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -22,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.kazemieh.www.shop.R
+import com.kazemieh.www.shop.ui.theme.splashBg
 
 @Composable
 fun BottomNavigationBar(
@@ -32,28 +37,28 @@ fun BottomNavigationBar(
 
     val items = listOf(
         BottomNavItem(
-            name = "Home",
+            name = "خانه",
             route = Screen.Home.route,
-            selectedIcon = painterResource(id = R.drawable.digi_logo),
-            unSelectedIcon = painterResource(id = R.drawable.digi_logo)
+            selectedIcon = painterResource(id = R.drawable.home_fill),
+            unSelectedIcon = painterResource(id = R.drawable.home_outline)
         ),
         BottomNavItem(
-            name = "Category",
+            name = "دسته بندی",
             route = Screen.Category.route,
-            selectedIcon = painterResource(id = R.drawable.digi_logo),
-            unSelectedIcon = painterResource(id = R.drawable.digi_logo)
+            selectedIcon = painterResource(id = R.drawable.category_fill),
+            unSelectedIcon = painterResource(id = R.drawable.category_outline)
         ),
         BottomNavItem(
-            name = "Basket",
+            name = "سبد خرید",
             route = Screen.Basket.route,
-            selectedIcon = painterResource(id = R.drawable.digi_logo),
-            unSelectedIcon = painterResource(id = R.drawable.digi_logo)
+            selectedIcon = painterResource(id = R.drawable.cart_fill),
+            unSelectedIcon = painterResource(id = R.drawable.cart_outline)
         ),
         BottomNavItem(
-            name = "Profile",
+            name = "پروفایل",
             route = Screen.Profile.route,
-            selectedIcon = painterResource(id = R.drawable.digi_logo),
-            unSelectedIcon = painterResource(id = R.drawable.digi_logo)
+            selectedIcon = painterResource(id = R.drawable.user_fill),
+            unSelectedIcon = painterResource(id = R.drawable.user_outline)
         )
     )
 
