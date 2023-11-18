@@ -68,52 +68,40 @@ fun BottomNavigationBar(
     }
 
     if (showBottomBar) {
-        BottomAppBar {
-            NavigationBar(
-                containerColor = Color.White,
-                tonalElevation = 6.dp
-            ) {
-
-                items.forEach {
-                    val selected = it.route == backStackEntry.value?.destination?.route
-
-                    NavigationBarItem(
-                        selected = selected,
-                        onClick = { onItemClick(it) },
-                        /*label = {
-                            Text(
-                                text = "item.name",
-                                fontWeight = FontWeight.SemiBold,
-                            )
-                        },*/
-                        icon = {
-                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                if (selected) {
-
-                                    Icon(
-                                        painter = it.selectedIcon,
-                                        contentDescription = "",
-                                        modifier = Modifier.height(24.dp)
-                                    )
-                                } else {
-
-                                    Icon(
-                                        painter = it.unSelectedIcon, contentDescription = "",
-                                        modifier = Modifier.height(24.dp)
-                                    )
-                                }
-                                Text(
-                                    text = it.name,
-                                    textAlign = TextAlign.Center,
-                                    style = MaterialTheme.typography.titleMedium,
-                                    fontWeight = FontWeight.Bold,
-                                    modifier = Modifier.padding(6.dp)
+        NavigationBar(
+            modifier = modifier,
+        ) {
+            items.forEach {
+                val selected = it.route == backStackEntry.value?.destination?.route
+                NavigationBarItem(
+                    selected = selected,
+                    onClick = { onItemClick(it) },
+                    label = {
+                        Text(
+                            text = it.name,
+                            textAlign = TextAlign.Center,
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(6.dp)
+                        )
+                    },
+                    icon = {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            if (selected) {
+                                Icon(
+                                    painter = it.selectedIcon,
+                                    contentDescription = "",
+                                    modifier = Modifier.height(20.dp)
+                                )
+                            } else {
+                                Icon(
+                                    painter = it.unSelectedIcon, contentDescription = "",
+                                    modifier = Modifier.height(20.dp)
                                 )
                             }
-
                         }
-                    )
-                }
+                    }
+                )
             }
         }
     }
