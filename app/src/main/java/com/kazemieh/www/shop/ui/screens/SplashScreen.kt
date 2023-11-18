@@ -37,11 +37,11 @@ fun Splash() {
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Image(
+       /* Image(
             painter = painterResource(id = R.drawable.digi_logo),
             contentDescription = null,
             modifier = Modifier.size(250.dp)
-        )
+        )*/
         Box(
             modifier = Modifier
                 .fillMaxSize()
