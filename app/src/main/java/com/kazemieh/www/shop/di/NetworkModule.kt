@@ -1,8 +1,10 @@
 package com.kazemieh.www.shop.di
 
 import com.kazemieh.www.shop.data.remote.HomeApiInterface
+import com.kazemieh.www.shop.util.Constants.API_KEY
 import com.kazemieh.www.shop.util.Constants.BASE_URL
 import com.kazemieh.www.shop.util.Constants.NETWORK_TIME_OUT_SECOND
+import com.kazemieh.www.shop.util.Constants.USER_LANGUAGE
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,6 +34,13 @@ object NetworkModule {
         .connectTimeout(NETWORK_TIME_OUT_SECOND, TimeUnit.SECONDS)
         .readTimeout(NETWORK_TIME_OUT_SECOND, TimeUnit.SECONDS)
         .writeTimeout(NETWORK_TIME_OUT_SECOND, TimeUnit.SECONDS)
+        .addInterceptor {
+            val request = it.request().newBuilder()
+                .addHeader("x-api-key", API_KEY)
+                .addHeader("lang", USER_LANGUAGE)
+                .build()
+            it.proceed(request)
+        }
         .addInterceptor(interceptor())
         .build()
 

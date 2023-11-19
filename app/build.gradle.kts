@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidApplication)
@@ -5,6 +8,10 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
 }
+
+val apikeyPropertiesFile = rootProject.file("key.properties")
+val apikeyProperties = Properties()
+apikeyProperties.load(FileInputStream(apikeyPropertiesFile))
 
 android {
     namespace = "com.kazemieh.www.shop"
@@ -21,6 +28,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField("String" , "X_API_KEY" , apikeyProperties["X_API_KEY"].toString())
+
     }
 
     buildTypes {
@@ -41,6 +51,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -89,20 +100,20 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
 
     // compose
-    implementation (libs.androidx.navigation.compose)
-    implementation (libs.androidx.constraintlayout.compose)
-    implementation (libs.toolbar.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.toolbar.compose)
 
     // lottie
-    implementation (libs.lottie.compose)
+    implementation(libs.lottie.compose)
 
     // coil
     implementation(libs.coil.compose)
 
     // swiper
-    implementation (libs.accompanist.swiperefresh)
+    implementation(libs.accompanist.swiperefresh)
 
     // system ui controller
-    implementation (libs.accompanist.systemuicontroller)
+    implementation(libs.accompanist.systemuicontroller)
 
 }
