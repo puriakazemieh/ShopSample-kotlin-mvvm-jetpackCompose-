@@ -1,6 +1,6 @@
 package com.kazemieh.www.shop.di
 
-import com.kazemieh.www.shop.data.remote.ApiInterface
+import com.kazemieh.www.shop.data.remote.HomeApiInterface
 import com.kazemieh.www.shop.util.Constants.BASE_URL
 import com.kazemieh.www.shop.util.Constants.NETWORK_TIME_OUT_SECOND
 import dagger.Module
@@ -43,12 +43,6 @@ object NetworkModule {
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()
-
-
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiInterface =
-        retrofit.create(ApiInterface::class.java)
 
 
 }
