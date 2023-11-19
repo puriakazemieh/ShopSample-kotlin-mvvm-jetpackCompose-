@@ -7,6 +7,6 @@ import retrofit2.http.GET
 
 interface HomeApiInterface {
 
-    @GET("/getSlider")
+    @GET("/api/v1/getSlider")
     suspend fun getSlider(): Response<ResponseResult<List<Slider>>>
 }

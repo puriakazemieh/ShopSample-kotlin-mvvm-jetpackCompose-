@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
 
-    private val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
+     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
 
 
     suspend fun getSlider() {

@@ -11,7 +11,7 @@ object Constants {
     var USER_LANGUAGE = "USER_LANGUAGE"
 
     const val NETWORK_TIME_OUT_SECOND = 60L
-    const val BASE_URL = "https://dig-za0p.onrender.com/api/v1/"
+    const val BASE_URL = "https://dig-za0p.onrender.com"
     const val API_KEY = BuildConfig.X_API_KEY
 
 }
