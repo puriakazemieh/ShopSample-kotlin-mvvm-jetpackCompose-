@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.kazemieh.www.shop.navigation.BottomNavigationBar
 import com.kazemieh.www.shop.navigation.SetupNavGraph
 import com.kazemieh.www.shop.ui.component.AppConfig
+import com.kazemieh.www.shop.ui.component.ChangeStatusBarColor
 import com.kazemieh.www.shop.ui.theme.ShopTheme
 import com.kazemieh.www.shop.util.Constants.ENGLISH_LANG
 import com.kazemieh.www.shop.util.Constants.PERSIAN_LANG
@@ -33,8 +34,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            navController = rememberNavController()
+
+            ChangeStatusBarColor(navController = navController)
             ShopTheme {
-                navController = rememberNavController()
 
                 AppConfig()
 
