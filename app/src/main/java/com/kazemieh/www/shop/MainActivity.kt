@@ -18,7 +18,6 @@ import com.kazemieh.www.shop.ui.component.AppConfig
 import com.kazemieh.www.shop.ui.component.ChangeStatusBarColor
 import com.kazemieh.www.shop.ui.theme.ShopTheme
 import com.kazemieh.www.shop.util.Constants.ENGLISH_LANG
-import com.kazemieh.www.shop.util.Constants.PERSIAN_LANG
 import com.kazemieh.www.shop.util.Constants.USER_LANGUAGE
 import com.kazemieh.www.shop.util.LocaleUtils
 import dagger.hilt.android.AndroidEntryPoint
