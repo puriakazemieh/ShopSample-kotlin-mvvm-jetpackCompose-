@@ -1,10 +1,10 @@
 package com.kazemieh.www.shop.ui.screens.home
 
-import android.annotation.SuppressLint
 import android.util.Log
+import android.annotation.SuppressLint
 import android.view.ViewGroup
-import android.webkit.WebChromeClient
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
@@ -18,9 +18,9 @@ fun WebPageScreen(navController: NavController, url: String) {
         WebView(it).apply {
             layoutParams = ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
+                ViewGroup.LayoutParams.MATCH_PARENT,
             )
-            webChromeClient = WebChromeClient()
+            webViewClient = WebViewClient()
             settings.javaScriptEnabled = true
             settings.userAgentString = System.getProperty("http.agent")
             loadUrl(url)
@@ -28,4 +28,5 @@ fun WebPageScreen(navController: NavController, url: String) {
     }, update = {
         it.loadUrl(url)
     })
+
 }
