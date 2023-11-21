@@ -21,7 +21,11 @@ fun SplashScreen(navController: NavHostController) {
     Splash()
     LaunchedEffect(key1 = true) {
 //        delay(2500)
-        navController.navigate(Screen.Home.route)
+        navController.navigate(Screen.Home.route){
+            popUpTo(Screen.Splash.route){
+                inclusive=true
+            }
+        }
     }
 }
 

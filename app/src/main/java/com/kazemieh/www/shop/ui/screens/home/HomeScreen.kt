@@ -13,11 +13,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.kazemieh.www.shop.util.Constants
+import com.kazemieh.www.shop.util.LocaleUtils
 import com.kazemieh.www.shop.viewmodel.HomeViewModel
 import kotlinx.coroutines.launch
 
@@ -36,6 +39,8 @@ fun Home(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 
+    Log.d("TAG", "onCreate:1 ${Constants.USER_LANGUAGE}")
+    LocaleUtils.setLocale(LocalContext.current, Constants.USER_LANGUAGE)
     LaunchedEffect(key1 = true) {
         refreshDataFromServer(viewModel)
     }
