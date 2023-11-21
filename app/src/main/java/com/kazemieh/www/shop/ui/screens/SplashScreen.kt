@@ -9,10 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.kazemieh.www.shop.navigation.Screen
 import com.kazemieh.www.shop.ui.component.Loading3Dots
 import com.kazemieh.www.shop.ui.theme.splashBg
@@ -22,7 +20,7 @@ import kotlinx.coroutines.delay
 fun SplashScreen(navController: NavHostController) {
     Splash()
     LaunchedEffect(key1 = true) {
-        delay(2500)
+//        delay(2500)
         navController.navigate(Screen.Home.route)
     }
 }
@@ -35,22 +33,22 @@ fun Splash() {
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-       /* Image(
-            painter = painterResource(id = R.drawable.digi_logo),
-            contentDescription = null,
-            modifier = Modifier.size(250.dp)
-        )*/
+        /* Image(
+             painter = painterResource(id = R.drawable.digi_logo),
+             contentDescription = null,
+             modifier = Modifier.size(250.dp)
+         )*/
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(100.dp),
             contentAlignment = Alignment.BottomCenter
         ) {
-         /*   Image(
-                modifier = Modifier.height(30.dp),
-                painter = painterResource(id = R.drawable.digi_txt_white),
-                contentDescription = null
-            )*/
+            /*   Image(
+                   modifier = Modifier.height(30.dp),
+                   painter = painterResource(id = R.drawable.digi_txt_white),
+                   contentDescription = null
+               )*/
         }
         Box(
             modifier = Modifier

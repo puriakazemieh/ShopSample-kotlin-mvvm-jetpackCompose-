@@ -72,7 +72,6 @@ fun BottomNavigationBar(
                             textAlign = TextAlign.Center,
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(6.dp)
                         )
                     },
                     icon = {
