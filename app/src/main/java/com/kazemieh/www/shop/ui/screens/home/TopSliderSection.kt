@@ -146,7 +146,7 @@ fun TopSliderSection(viewModel: HomeViewModel = hiltViewModel()) {
                 items(sliderList.size) {
                     Box(
                         modifier = Modifier
-                            .padding(LocalSpacing.current.veryExtraSmall)
+                            .padding(LocalSpacing.current.semiExtraSmall)
                             .fillMaxWidth()
                             .wrapContentWidth(Alignment.CenterHorizontally)
                             .wrapContentHeight(Alignment.CenterVertically)

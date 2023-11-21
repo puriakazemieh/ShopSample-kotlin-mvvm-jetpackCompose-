@@ -7,4 +7,12 @@
     <string name="my_shop">فروشگاه‌من</string>
     <string name="profile">پروفایل</string>
     <string name="search_in">جست‌وجو در </string>
+    <string name="my_shop_jet">دیجی‌کالا جت</string>
+    <string name="digi_style">حراج استایل</string>
+    <string name="digi_pay">دیجی پی</string>
+    <string name="pindo">پیندو</string>
+    <string name="gift_card">کارت هدیه</string>
+    <string name="digi_plus">دیجی‌پلاس</string>
+    <string name="digi_shopping">خرید سر ماه</string>
+    <string name="more">بیشتر</string>
 </resources>
