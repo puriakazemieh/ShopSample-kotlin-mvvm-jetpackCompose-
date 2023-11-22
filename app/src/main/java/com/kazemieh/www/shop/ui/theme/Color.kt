@@ -3,7 +3,6 @@ package com.kazemieh.www.shop.ui.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
 
 val Purple80 = Color(0xFFD0BCFF)
@@ -48,3 +47,8 @@ val ColorScheme.amber: Color
 val ColorScheme.grayCategory: Color
     @Composable
     get() = Color(0xFFF1F0EE)
+
+
+val ColorScheme.LightRed: Color
+    @Composable
+    get() = Color(0xffef4056)
