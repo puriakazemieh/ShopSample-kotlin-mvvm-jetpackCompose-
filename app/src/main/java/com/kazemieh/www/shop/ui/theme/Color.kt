@@ -67,3 +67,9 @@ val ColorScheme.semiDarkText: Color
 val ColorScheme.DarkCyan: Color
     @Composable
     get() = Color(0xFF0fabc6)
+
+
+
+val ColorScheme.LightGreen: Color
+    @Composable
+    get() = Color(0xff86bf3c)
