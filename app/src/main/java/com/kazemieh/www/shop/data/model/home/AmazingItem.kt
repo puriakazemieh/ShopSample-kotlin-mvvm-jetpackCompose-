@@ -5,6 +5,6 @@ data class AmazingItem(
     val discountPercent: Int,
     val image: String,
     val name: String,
-    val price: Int,
+    val price: Long,
     val seller: String
 )
