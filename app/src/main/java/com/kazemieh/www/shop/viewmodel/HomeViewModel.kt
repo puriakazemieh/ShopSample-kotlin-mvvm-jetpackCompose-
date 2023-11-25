@@ -3,6 +3,7 @@ package com.kazemieh.www.shop.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kazemieh.www.shop.data.model.home.AmazingItem
+import com.kazemieh.www.shop.data.model.home.MainCategory
 import com.kazemieh.www.shop.data.model.home.Slider
 import com.kazemieh.www.shop.data.remote.NetworkResult
 import com.kazemieh.www.shop.repository.HomeRepository
@@ -19,6 +20,8 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     val amazingSuperMarketItems =
         MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
     val proposalBanners = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
+    val categories = MutableStateFlow<NetworkResult<List<MainCategory>>>(NetworkResult.Loading())
+
 
     suspend fun getAllDataFromServer() {
         viewModelScope.launch {
@@ -33,6 +36,9 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             }
             launch {
                 proposalBanners.emit(repository.getProposalBanners())
+            }
+            launch {
+                categories.emit(repository.getCategories())
             }
         }
     }

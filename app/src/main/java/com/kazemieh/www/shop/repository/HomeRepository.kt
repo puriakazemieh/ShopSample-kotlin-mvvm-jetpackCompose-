@@ -1,6 +1,7 @@
 package com.kazemieh.www.shop.repository
 
 import com.kazemieh.www.shop.data.model.home.AmazingItem
+import com.kazemieh.www.shop.data.model.home.MainCategory
 import com.kazemieh.www.shop.data.model.home.Slider
 import com.kazemieh.www.shop.data.remote.BaseApiResponse
 import com.kazemieh.www.shop.data.remote.HomeApiInterface
@@ -32,4 +33,8 @@ class HomeRepository @Inject constructor(private val api: HomeApiInterface) : Ba
         }
 
 
+    suspend fun getCategories(): NetworkResult<List<MainCategory>> =
+        safeApiCall {
+            api.getCategories()
+        }
 }

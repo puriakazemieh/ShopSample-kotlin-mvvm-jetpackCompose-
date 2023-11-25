@@ -71,6 +71,7 @@ fun SwipeRefreshSection(viewModel: HomeViewModel, navController: NavHostControll
             item { AmazingOfferSection(navController) }
             item { ProposalCardSection(navController) }
             item { SuperMarketOfferSection(navController) }
+            item { CategoryListSection(navController) }
         }
 
     }
