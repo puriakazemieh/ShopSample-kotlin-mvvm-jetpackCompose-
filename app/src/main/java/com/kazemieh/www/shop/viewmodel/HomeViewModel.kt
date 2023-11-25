@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.kazemieh.www.shop.data.model.home.AmazingItem
 import com.kazemieh.www.shop.data.model.home.MainCategory
 import com.kazemieh.www.shop.data.model.home.Slider
+import com.kazemieh.www.shop.data.model.home.StoreProduct
 import com.kazemieh.www.shop.data.remote.NetworkResult
 import com.kazemieh.www.shop.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,27 +23,39 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     val proposalBanners = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
     val categories = MutableStateFlow<NetworkResult<List<MainCategory>>>(NetworkResult.Loading())
     val centerBannerItems = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
+    val bestSellerItems = MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
+
 
 
     suspend fun getAllDataFromServer() {
         viewModelScope.launch {
+
             launch {
                 slider.emit(repository.getSlider())
             }
+
             launch {
                 amazingItems.emit(repository.getAmazingItem())
             }
+
             launch {
                 amazingSuperMarketItems.emit(repository.getAmazingSuperMarketItems())
             }
+
             launch {
                 proposalBanners.emit(repository.getProposalBanners())
             }
+
             launch {
                 categories.emit(repository.getCategories())
             }
+
             launch {
                 centerBannerItems.emit(repository.getCenterBanners())
+            }
+
+            launch {
+                bestSellerItems.emit(repository.getBestSellerItems())
             }
         }
     }
