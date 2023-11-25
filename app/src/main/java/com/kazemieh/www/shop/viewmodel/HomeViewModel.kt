@@ -21,6 +21,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
         MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
     val proposalBanners = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
     val categories = MutableStateFlow<NetworkResult<List<MainCategory>>>(NetworkResult.Loading())
+    val centerBannerItems = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
 
 
     suspend fun getAllDataFromServer() {
@@ -39,6 +40,9 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             }
             launch {
                 categories.emit(repository.getCategories())
+            }
+            launch {
+                centerBannerItems.emit(repository.getCenterBanners())
             }
         }
     }
