@@ -79,7 +79,7 @@ fun SwipeRefreshSection(viewModel: HomeViewModel, navController: NavHostControll
             item { CenterBannerSection(3) }
             item { MostFavoriteProductSection() }
             item { CenterBannerSection(4) }
-
+            item { MostDiscountedSection() }
             item { CenterBannerSection(5) }
 
         }

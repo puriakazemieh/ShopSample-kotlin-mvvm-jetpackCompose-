@@ -194,16 +194,14 @@ fun MostFavoriteProductsOffer(
 
                 }
             }
+
+            Divider(
+                modifier = Modifier
+                    .width(1.dp)
+                    .height(320.dp)
+                    .alpha(0.4f),
+                color = Color.LightGray
+            )
         }
-
-        Divider(
-            modifier = Modifier
-                .width(1.dp)
-                .height(320.dp)
-                .alpha(0.4f),
-            color = Color.LightGray
-        )
-
     }
-
 }
