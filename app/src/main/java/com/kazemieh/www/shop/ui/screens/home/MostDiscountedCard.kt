@@ -37,6 +37,7 @@ import com.kazemieh.www.shop.data.model.home.StoreProduct
 import com.kazemieh.www.shop.ui.theme.DarkCyan
 import com.kazemieh.www.shop.ui.theme.DarkRed
 import com.kazemieh.www.shop.ui.theme.LocalElevation
+import com.kazemieh.www.shop.ui.theme.cardBackground
 import com.kazemieh.www.shop.ui.theme.semiDarkText
 import com.kazemieh.www.shop.ui.theme.spacing
 import com.kazemieh.www.shop.util.DigitHelper
@@ -47,7 +48,7 @@ fun MostDiscountedCard(item: StoreProduct) {
         modifier = Modifier
             .fillMaxWidth(0.5f)
             .padding(MaterialTheme.spacing.extraSmall),
-        colors = CardDefaults.cardColors(containerColor =Color.White),
+        colors = CardDefaults.cardColors(containerColor =MaterialTheme.colorScheme.cardBackground),
         elevation = CardDefaults.cardElevation(LocalElevation.current.veryExtraSmall)
     ) {
         Column(
@@ -146,7 +147,7 @@ fun MostDiscountedCard(item: StoreProduct) {
                     ) {
                         Text(
                             text = "${DigitHelper.digitByLocate(item.discountPercent.toString())}%",
-                            color = Color.White,
+//                            color = Color.White,
                             style = MaterialTheme.typography.labelSmall,
                             fontWeight = FontWeight.Bold
                         )
@@ -165,7 +166,7 @@ fun MostDiscountedCard(item: StoreProduct) {
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.SemiBold
                             )
-                            Image(
+                            Icon(
                                 painter = painterResource(id = R.drawable.toman),
                                 contentDescription = "",
                                 modifier = Modifier

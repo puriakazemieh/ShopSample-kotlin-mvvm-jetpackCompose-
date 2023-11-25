@@ -67,14 +67,14 @@ fun AmazingOfferCard(
             Text(
                 text = stringResource(id = R.string.see_all),
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.White,
+//                color = Color.White,
                 fontWeight = FontWeight.SemiBold
             )
 
             Icon(
                 imageVector = Icons.Filled.KeyboardArrowLeft,
                 contentDescription = "",
-                tint = Color.White
+//                tint = Color.White
             )
         }
 

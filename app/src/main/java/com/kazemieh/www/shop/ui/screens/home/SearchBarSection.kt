@@ -30,6 +30,7 @@ import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.ui.theme.LocalElevation
 import com.kazemieh.www.shop.ui.theme.LocalShape
 import com.kazemieh.www.shop.ui.theme.LocalSpacing
+import com.kazemieh.www.shop.ui.theme.cardBackground
 import com.kazemieh.www.shop.ui.theme.searchBarBg
 import com.kazemieh.www.shop.ui.theme.unSelectedBottomBar
 import com.kazemieh.www.shop.util.Constants
@@ -43,7 +44,7 @@ fun SearchBarSection() {
         modifier = Modifier
             .fillMaxWidth()
             .height(LocalSpacing.current.s64)
-            .background(color = Color.White)
+//            .background(color = MaterialTheme.colorScheme.cardBackground)
             .padding(
                 horizontal = LocalSpacing.current.medium,
                 vertical = LocalSpacing.current.small

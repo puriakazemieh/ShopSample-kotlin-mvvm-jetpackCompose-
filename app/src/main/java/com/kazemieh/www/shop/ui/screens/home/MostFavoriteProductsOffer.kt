@@ -154,7 +154,7 @@ fun MostFavoriteProductsOffer(
                         ) {
                             Text(
                                 text = "${DigitHelper.digitByLocate(item.discountPercent.toString())}%",
-                                color = Color.White,
+//                                color = Color.White,
                                 style = MaterialTheme.typography.labelSmall,
                                 fontWeight = FontWeight.Bold
                             )
@@ -173,7 +173,7 @@ fun MostFavoriteProductsOffer(
                                     style = MaterialTheme.typography.bodyMedium,
                                     fontWeight = FontWeight.SemiBold
                                 )
-                                Image(
+                                Icon(
                                     painter = painterResource(id = R.drawable.toman),
                                     contentDescription = "",
                                     modifier = Modifier
@@ -197,6 +197,7 @@ fun MostFavoriteProductsOffer(
 
             Divider(
                 modifier = Modifier
+                    .padding(start = MaterialTheme.spacing.semiMedium)
                     .width(1.dp)
                     .height(320.dp)
                     .alpha(0.4f),

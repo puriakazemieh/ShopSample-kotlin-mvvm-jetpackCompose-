@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.kazemieh.www.shop.navigation.Screen
+import com.kazemieh.www.shop.ui.theme.cardBackground
 import com.kazemieh.www.shop.ui.theme.splashBg
 
 @Composable
@@ -28,9 +29,10 @@ fun ChangeStatusBarColor(navController: NavHostController) {
         }
 
         else -> {
+            val color=MaterialTheme.colorScheme.cardBackground
             SideEffect {
                 systemUiController.setStatusBarColor(
-                    color = Color.White
+                    color = color
                 )
             }
 

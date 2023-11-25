@@ -92,7 +92,6 @@ fun TopSliderSection(viewModel: HomeViewModel = hiltViewModel()) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
-                .background(Color.White)
         ) {
 
             Box(modifier = Modifier.fillMaxWidth()) {

@@ -1,5 +1,6 @@
 package com.kazemieh.www.shop.ui.screens.home
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.ui.theme.LightRed
+import com.kazemieh.www.shop.ui.theme.cardBackground
 import com.kazemieh.www.shop.ui.theme.darkText
 import com.kazemieh.www.shop.ui.theme.roundedShape
 import com.kazemieh.www.shop.ui.theme.spacing
@@ -38,9 +40,9 @@ fun AmazingShowMore() {
                 top = MaterialTheme.spacing.semiLarge
             ),
         shape = MaterialTheme.roundedShape.small,
-        colors = CardDefaults.cardColors(
-            contentColor = Color.White
-        ),
+//        colors = CardDefaults.cardColors(
+//            co ntentColor = Color.Cyan
+//        ),
 
         ) {
 

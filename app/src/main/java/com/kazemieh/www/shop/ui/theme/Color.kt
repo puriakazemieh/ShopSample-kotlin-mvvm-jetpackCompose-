@@ -58,10 +58,14 @@ val ColorScheme.DarkRed: Color
     get() = Color(0xFFe6123d)
 
 
-
 val ColorScheme.semiDarkText: Color
     @Composable
     get() = if (isSystemInDarkTheme()) Color(0xFFD8D8D8) else Color(0xFF5C5E61)
+
+
+val ColorScheme.cardBackground: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) Color(0xFF000000) else Color(0xFFFFFFFF)
 
 
 val ColorScheme.DarkCyan: Color

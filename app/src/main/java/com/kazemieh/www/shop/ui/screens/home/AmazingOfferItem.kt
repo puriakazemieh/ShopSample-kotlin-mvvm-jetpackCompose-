@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -37,6 +39,7 @@ import com.kazemieh.www.shop.data.model.home.AmazingItem
 import com.kazemieh.www.shop.ui.theme.DarkCyan
 import com.kazemieh.www.shop.ui.theme.DarkRed
 import com.kazemieh.www.shop.ui.theme.LightRed
+import com.kazemieh.www.shop.ui.theme.cardBackground
 import com.kazemieh.www.shop.ui.theme.roundedShape
 import com.kazemieh.www.shop.ui.theme.semiDarkText
 import com.kazemieh.www.shop.ui.theme.spacing
@@ -48,12 +51,14 @@ import com.kazemieh.www.shop.util.DigitHelper.digitByLocateAndSeparator
 fun AmazingOfferItem(amazingItem: AmazingItem) {
     Card(
         modifier = Modifier
+            .fillMaxHeight()
             .width(170.dp)
             .padding(
                 vertical = MaterialTheme.spacing.semiLarge,
                 horizontal = MaterialTheme.spacing.semiSmall
             ),
-        shape = MaterialTheme.roundedShape.small
+        shape = MaterialTheme.roundedShape.small,
+        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.cardBackground),
     ) {
         Column(
             modifier = Modifier
@@ -159,7 +164,7 @@ fun AmazingOfferItem(amazingItem: AmazingItem) {
                     ) {
                         Text(
                             text = "${digitByLocate(amazingItem.discountPercent.toString())}%",
-                            color = Color.White,
+//                            color = Color.White,
                             style = MaterialTheme.typography.labelSmall,
                             fontWeight = FontWeight.Bold
                         )
@@ -178,7 +183,7 @@ fun AmazingOfferItem(amazingItem: AmazingItem) {
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.SemiBold
                             )
-                            Image(
+                            Icon(
                                 painter = painterResource(id = R.drawable.toman),
                                 contentDescription = "",
                                 modifier = Modifier

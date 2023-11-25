@@ -23,7 +23,6 @@ import com.kazemieh.www.shop.R
 @Composable
 fun BottomNavigationBar(
     navController: NavController,
-    modifier: Modifier = Modifier,
     onItemClick: (BottomNavItem) -> Unit
 ) {
 
@@ -58,9 +57,7 @@ fun BottomNavigationBar(
     val showBottomBar = backStackEntry.value?.destination?.route in items.map { it.route }
 
     if (showBottomBar) {
-        NavigationBar(
-            modifier = modifier,
-        ) {
+        NavigationBar {
             items.forEachIndexed { index, item ->
                 val selected = item.route == backStackEntry.value?.destination?.route
                 NavigationBarItem(
