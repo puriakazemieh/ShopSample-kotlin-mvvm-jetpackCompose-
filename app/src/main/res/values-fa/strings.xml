@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">فروشگاه</string>
+    <string name="home">خانه</string>
+    <string name="basket">سبد خرید</string>
+    <string name="category">دسته‌بندی‌ها</string>
+    <string name="my_shop">فروشگاه‌من</string>
+    <string name="profile">پروفایل</string>
+    <string name="search_in">جست‌وجو در </string>
+    <string name="my_shop_jet">دیجی‌کالا جت</string>
+    <string name="digi_style">حراج استایل</string>
+    <string name="digi_pay">دیجی پی</string>
+    <string name="pindo">پیندو</string>
+    <string name="gift_card">کارت هدیه</string>
+    <string name="digi_plus">دیجی‌پلاس</string>
+    <string name="digi_shopping">خرید سر ماه</string>
+    <string name="more">بیشتر</string>
+    <string name="see_all">مشاهده همه</string>
+    <string name="amazing_for_app">شگفت انگیز اختصاصی اپ</string>
+    <string name="category_title">خرید بر اساس دسته‌بندی</string>
+
+</resources>
