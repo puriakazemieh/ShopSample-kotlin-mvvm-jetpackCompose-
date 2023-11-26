@@ -80,9 +80,3 @@ fun AmazingOfferSection(
 }
 
 
-
-@Composable
-private fun logoChangeByLanguage(): Painter {
-    return if (Constants.USER_LANGUAGE == Constants.ENGLISH_LANG) painterResource(id = R.drawable.digi_red_english)
-    else painterResource(id = R.drawable.digi_red_persian)
-}
