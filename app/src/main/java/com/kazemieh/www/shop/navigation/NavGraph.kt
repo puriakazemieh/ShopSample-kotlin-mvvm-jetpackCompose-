@@ -6,7 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.kazemieh.www.shop.ui.screens.BasketScreen
+import com.kazemieh.www.shop.ui.screens.basket.BasketScreen
 import com.kazemieh.www.shop.ui.screens.category.CategoryScreen
 import com.kazemieh.www.shop.ui.screens.home.HomeScreen
 import com.kazemieh.www.shop.ui.screens.ProfileScreen
