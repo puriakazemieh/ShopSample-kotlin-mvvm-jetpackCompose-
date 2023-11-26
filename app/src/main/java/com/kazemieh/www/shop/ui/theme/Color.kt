@@ -74,6 +74,10 @@ val ColorScheme.DarkCyan: Color
 
 
 
+val ColorScheme.LightCyan: Color
+    @Composable
+    get() = Color(0xFF17BFD3)
+
 val ColorScheme.LightGreen: Color
     @Composable
     get() = Color(0xff86bf3c)

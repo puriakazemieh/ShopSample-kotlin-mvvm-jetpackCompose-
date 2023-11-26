@@ -18,5 +18,5 @@ data class Sub(
     val _id: String,
     val count: String,
     val image: String,
-    val name: Int,
+    val name: String,
 )
