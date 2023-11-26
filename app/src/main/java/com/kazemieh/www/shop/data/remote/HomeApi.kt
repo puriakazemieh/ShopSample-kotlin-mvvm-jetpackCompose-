@@ -8,7 +8,7 @@ import com.kazemieh.www.shop.data.model.home.StoreProduct
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface HomeApiInterface {
+interface HomeApi {
 
     @GET("/api/v1/getSlider")
     suspend fun getSlider(): Response<ResponseResult<List<Slider>>>

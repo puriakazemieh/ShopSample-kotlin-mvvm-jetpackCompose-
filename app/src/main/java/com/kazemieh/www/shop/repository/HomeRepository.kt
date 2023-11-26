@@ -5,11 +5,11 @@ import com.kazemieh.www.shop.data.model.home.MainCategory
 import com.kazemieh.www.shop.data.model.home.Slider
 import com.kazemieh.www.shop.data.model.home.StoreProduct
 import com.kazemieh.www.shop.data.remote.BaseApiResponse
-import com.kazemieh.www.shop.data.remote.HomeApiInterface
+import com.kazemieh.www.shop.data.remote.HomeApi
 import com.kazemieh.www.shop.data.remote.NetworkResult
 import javax.inject.Inject
 
-class HomeRepository @Inject constructor(private val api: HomeApiInterface) : BaseApiResponse() {
+class HomeRepository @Inject constructor(private val api: HomeApi) : BaseApiResponse() {
 
     suspend fun getSlider(): NetworkResult<List<Slider>> =
         safeApiCall {
