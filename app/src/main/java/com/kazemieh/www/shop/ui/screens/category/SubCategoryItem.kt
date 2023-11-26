@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.data.model.category.Sub
+import com.kazemieh.www.shop.ui.theme.cardBackground
 import com.kazemieh.www.shop.ui.theme.darkText
 import com.kazemieh.www.shop.ui.theme.grayCategory
 import com.kazemieh.www.shop.ui.theme.roundedShape
@@ -43,7 +44,7 @@ fun SubCategoryItem(item: Sub) {
 
         Column(
             modifier = Modifier
-                .background(MaterialTheme.colorScheme.grayCategory)
+                .background(MaterialTheme.colorScheme.cardBackground)
                 .fillMaxWidth()
                 .padding(vertical = MaterialTheme.spacing.semiMedium),
             horizontalAlignment = Alignment.CenterHorizontally

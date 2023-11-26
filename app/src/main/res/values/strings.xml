@@ -39,4 +39,9 @@
     <string name="cart">Cart</string>
     <string name="next_cart_list">next cart list</string>
 
+    <string name="cart_is_empty">Your cart is empty!</string>
+    <string name="suggestion_for_you">suggestion for you</string>
+
+
+
 </resources>
