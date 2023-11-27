@@ -24,6 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kazemieh.www.shop.R
+import com.kazemieh.www.shop.data.model.basket.CartItem
+import com.kazemieh.www.shop.data.model.basket.CartStatus
 import com.kazemieh.www.shop.data.model.home.StoreProduct
 import com.kazemieh.www.shop.data.remote.NetworkResult
 import com.kazemieh.www.shop.ui.screens.home.MostDiscountedCard
@@ -88,7 +90,20 @@ fun SuggestListSection(
         horizontalArrangement = Arrangement.Start
     ) {
         suggestedList.forEach {
-            MostDiscountedCard(it)
+            SuggestionItemCard(it) {
+                viewModel.insertCartItem(
+                    car = CartItem(
+                        itemId = it._id,
+                        name = it.name,
+                        seller = it.seller,
+                        price = it.price,
+                        discountPercent = it.discountPercent,
+                        image = it.image,
+                        count = 1,
+                        cartStatus = CartStatus.CURRENT_CART
+                    )
+                )
+            }
         }
     }
 
