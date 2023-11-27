@@ -46,7 +46,7 @@ fun EmptyBasketShopping() {
             color = MaterialTheme.colorScheme.semiDarkText,
         )
         Spacer(
-            modifier = androidx.compose.ui.Modifier.height(MaterialTheme.spacing.medium)
+            modifier = Modifier.height(MaterialTheme.spacing.medium)
         )
 
     }
