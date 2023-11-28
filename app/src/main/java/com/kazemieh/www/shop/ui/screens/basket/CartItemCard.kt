@@ -66,6 +66,7 @@ import com.kazemieh.www.shop.ui.theme.LightCyan
 import com.kazemieh.www.shop.ui.theme.LightGreen
 import com.kazemieh.www.shop.ui.theme.LightRed
 import com.kazemieh.www.shop.ui.theme.LocalElevation
+import com.kazemieh.www.shop.ui.theme.amber
 import com.kazemieh.www.shop.ui.theme.cardBackground
 import com.kazemieh.www.shop.ui.theme.createIndication
 import com.kazemieh.www.shop.ui.theme.createMutableInteractionSource
@@ -82,6 +83,7 @@ import com.kazemieh.www.shop.viewmodel.BasketViewModel
 @Composable
 fun CartItemCard(
     item: CartItem,
+    mode: CartStatus,
     viewModel: BasketViewModel = hiltViewModel()
 ) {
 
@@ -93,7 +95,9 @@ fun CartItemCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(MaterialTheme.spacing.small),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.cardBackground)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.cardBackground),
+        elevation = CardDefaults.cardElevation(LocalElevation.current.veryExtraSmall)
+
     ) {
         Column(
             modifier = Modifier
@@ -266,64 +270,101 @@ fun CartItemCard(
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.cardBackground),
                     elevation = CardDefaults.cardElevation(LocalElevation.current.veryExtraSmall)
                 ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(4.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_increase_24),
-                            contentDescription = "",
-                            tint = MaterialTheme.colorScheme.LightRed,
+
+                    if (mode == CartStatus.CURRENT_CART) {
+                        Row(
                             modifier = Modifier
-                                .size(24.dp)
-                                .clickable(
-                                    onClick = {
-                                        count++
-                                        viewModel.changeCountCartItem(item.itemId, count)
-                                    },
-                                    interactionSource = createMutableInteractionSource(),
-                                    indication = createIndication(
-                                        color = Color.Gray,
-                                        bounded = true,
-                                    )
-                                ),
-                        )
-                        Text(
-                            text = digitByLocateAndSeparator(count.toString()),//count.toString(),
-                            color = MaterialTheme.colorScheme.LightRed,
-                            modifier = Modifier
-                                .width(30.dp)
-                                .wrapContentHeight()
-                                .wrapContentWidth()
-                        )
-                        Icon(
-                            painter = painterResource(id = if (count == 1) R.drawable.digi_trash else R.drawable.ic_decrease_24),
-                            contentDescription = "",
-                            tint = MaterialTheme.colorScheme.LightRed,
-                            modifier = Modifier
-                                .size(24.dp)
-                                .clickable(
-                                    onClick = {
-                                        if (item.count == 1) {
-                                            count = 1
-                                            viewModel.removeFromCart(item)
-                                        } else {
-                                            count--
+                                .fillMaxWidth()
+                                .padding(4.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+
+
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_increase_24),
+                                contentDescription = "",
+                                tint = MaterialTheme.colorScheme.LightRed,
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .clickable(
+                                        onClick = {
+                                            count++
                                             viewModel.changeCountCartItem(item.itemId, count)
-                                        }
-
-                                    },
-                                    interactionSource = createMutableInteractionSource(),
-                                    indication = createIndication(
-                                        color = Color.Gray,
-                                        bounded = true
-                                    )
-                                ),
-
+                                        },
+                                        interactionSource = createMutableInteractionSource(),
+                                        indication = createIndication(
+                                            color = Color.Gray,
+                                            bounded = true,
+                                        )
+                                    ),
                             )
+                            Text(
+                                text = digitByLocateAndSeparator(count.toString()),//count.toString(),
+                                color = MaterialTheme.colorScheme.LightRed,
+                                modifier = Modifier
+                                    .width(30.dp)
+                                    .wrapContentHeight()
+                                    .wrapContentWidth()
+                            )
+                            Icon(
+                                painter = painterResource(id = if (count == 1) R.drawable.digi_trash else R.drawable.ic_decrease_24),
+                                contentDescription = "",
+                                tint = MaterialTheme.colorScheme.LightRed,
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .clickable(
+                                        onClick = {
+                                            if (item.count == 1) {
+                                                count = 1
+                                                viewModel.removeFromCart(item)
+                                            } else {
+                                                count--
+                                                viewModel.changeCountCartItem(item.itemId, count)
+                                            }
+
+                                        },
+                                        interactionSource = createMutableInteractionSource(),
+                                        indication = createIndication(
+                                            color = Color.Gray,
+                                            bounded = true
+                                        )
+                                    ),
+
+                                )
+                        }
+                    } else {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(4.dp),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_baseline_shopping_cart_checkout),
+                                contentDescription = "",
+                                tint = MaterialTheme.colorScheme.LightRed,
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .clickable(
+                                        onClick = {
+
+                                            viewModel.changeStatusCartItem(
+                                                item.itemId,
+                                                CartStatus.CURRENT_CART
+                                            )
+
+                                        },
+                                        interactionSource = createMutableInteractionSource(),
+                                        indication = createIndication(
+                                            color = Color.Gray,
+                                            bounded = true
+                                        )
+                                    ),
+                            )
+                        }
+
 
                     }
                 }
@@ -356,26 +397,50 @@ fun CartItemCard(
 
 
             }
-            Row(
+
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8 .dp),
-                horizontalArrangement = Arrangement.End,
-                verticalAlignment = Alignment.CenterVertically
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.Center
+
             ) {
-                Text(
-                    text =
-                    stringResource(id = R.string.save_to_next_list),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.LightCyan
-                )
-                Icon(
-                    imageVector = Icons.Filled.KeyboardArrowLeft,
-                    contentDescription = "",
-                    tint = MaterialTheme.colorScheme.LightCyan
-                )
+                Row(
+                    modifier = Modifier
+                        .clickable(
+                            onClick = {
+                                if (mode == CartStatus.CURRENT_CART) {
+                                    viewModel.changeStatusCartItem(
+                                        item.itemId,
+                                        CartStatus.NEXT_CART
+                                    )
+                                } else {
+                                    viewModel.removeFromCart(item)
+                                }
+                            },
+                            interactionSource = createMutableInteractionSource(),
+                            indication = createIndication(
+                                color = Color.Gray,
+                                bounded = true
+                            )
+                        )
+                        .padding(8.dp)
+                ) {
+                    Text(
+                        text =
+                        stringResource(id = if (mode == CartStatus.NEXT_CART) R.string.delete_from_list else R.string.save_to_next_list),
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = if (mode == CartStatus.NEXT_CART) MaterialTheme.colorScheme.amber else MaterialTheme.colorScheme.LightCyan
+                    )
+                    Icon(
+                        imageVector = Icons.Filled.KeyboardArrowLeft,
+                        contentDescription = "",
+                        tint = if (mode == CartStatus.NEXT_CART) MaterialTheme.colorScheme.amber else MaterialTheme.colorScheme.LightCyan
+                    )
+                }
             }
+
         }
 
     }

@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kazemieh.www.shop.data.model.basket.CartItem
+import com.kazemieh.www.shop.data.model.basket.CartStatus
 import com.kazemieh.www.shop.viewmodel.BasketViewModel
 import kotlinx.coroutines.flow.collectLatest
 
@@ -45,7 +46,7 @@ fun ShoppingCart(
         }
         else{
             items(currentCartItem.value){
-                CartItemCard(it)
+                CartItemCard(it,CartStatus.CURRENT_CART)
             }
         }
 
