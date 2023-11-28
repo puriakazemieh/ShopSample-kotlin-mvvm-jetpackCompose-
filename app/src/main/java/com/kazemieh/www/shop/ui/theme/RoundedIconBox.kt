@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -85,5 +86,5 @@ fun createMutableInteractionSource(): MutableInteractionSource = remember {
 }
 
 @Composable
-fun createIndication(color: Color = Color.Red, bounded: Boolean = true) =
-    rememberRipple(color = color, bounded = bounded)
+fun createIndication(color: Color = Color.Red, bounded: Boolean = true, radius: Dp = Dp.Unspecified) =
+    rememberRipple(color = color, bounded = bounded, radius = radius)

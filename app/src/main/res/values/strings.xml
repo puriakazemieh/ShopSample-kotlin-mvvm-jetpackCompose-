@@ -42,6 +42,12 @@
     <string name="cart_is_empty">Your cart is empty!</string>
     <string name="suggestion_for_you">suggestion for you</string>
 
+    <string name="your_shopping_list">Your shopping list</string>
+    <string name="warranty">Warranty of authenticity and physical health</string>
+    <string name="digikala">Digikala</string>
+    <string name="digikala_send">Digikala send</string>
+    <string name="fast_send">Fast send</string>
+    <string name="product">product</string>
 
 
 </resources>

@@ -43,4 +43,13 @@
     <string name="suggestion_for_you">پیشنهاد برای شما</string>
 
 
+    <string name="your_shopping_list">لیست کالاهای شما</string>
+    <string name="warranty">گارانتی اصالت و سلامت فیزیکی کالا</string>
+    <string name="digikala">دیجی‌کالا</string>
+    <string name="digikala_send">ارسال دیجی کالا</string>
+    <string name="fast_send">ارسال سریع</string>
+    <string name="product">کالا</string>
+
+
+
 </resources>
