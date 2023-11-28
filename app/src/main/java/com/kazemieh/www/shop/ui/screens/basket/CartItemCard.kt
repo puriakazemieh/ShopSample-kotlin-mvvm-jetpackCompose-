@@ -24,6 +24,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -80,6 +81,10 @@ fun CartItemCard(
     item: CartItem
 ) {
 
+    var count by remember {
+        mutableStateOf(item.count)
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -105,7 +110,7 @@ fun CartItemCard(
                         style = MaterialTheme.typography.titleLarge,
                     )
                     Text(
-                        text = "${item.count}  ${stringResource(id = R.string.product)}",
+                        text = "${count}  ${stringResource(id = R.string.product)}",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.semiDarkText
                     )
@@ -259,7 +264,8 @@ fun CartItemCard(
                 ) {
                     Row(
                         modifier = Modifier
-                            .fillMaxWidth(),
+                            .fillMaxWidth()
+                            .padding(4.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -269,10 +275,9 @@ fun CartItemCard(
                             tint = MaterialTheme.colorScheme.LightRed,
                             modifier = Modifier
                                 .size(24.dp)
-//                    .padding(4.dp)
                                 .clickable(
                                     onClick = {
-//                                        count += 1
+                                        count++
                                     },
                                     interactionSource = createMutableInteractionSource(),
                                     indication = createIndication(
@@ -282,26 +287,23 @@ fun CartItemCard(
                                 ),
                         )
                         Text(
-                            text = digitByLocateAndSeparator(item.count.toString()),//count.toString(),
+                            text = digitByLocateAndSeparator(count.toString()),//count.toString(),
                             color = MaterialTheme.colorScheme.LightRed,
                             modifier = Modifier
                                 .width(30.dp)
                                 .wrapContentHeight()
                                 .wrapContentWidth()
-//                    .padding(horizontal = 8.dp)
                         )
                         Icon(
-                            painter = painterResource(id = if (item.count == 1) R.drawable.digi_trash else R.drawable.ic_decrease_24),
+                            painter = painterResource(id = if (count == 1) R.drawable.digi_trash else R.drawable.ic_decrease_24),
                             contentDescription = "",
                             tint = MaterialTheme.colorScheme.LightRed,
                             modifier = Modifier
-//                    .fillMaxSize()
                                 .size(24.dp)
-//                    .padding(4.dp)
                                 .clickable(
                                     onClick = {
-                                        if (item.count == 1) R.drawable.digi_trash else R.drawable.ic_decrease_24
-//                                        count -= 1
+                                        if (item.count == 1) count = 1 else count--
+
                                     },
                                     interactionSource = createMutableInteractionSource(),
                                     indication = createIndication(
@@ -322,7 +324,7 @@ fun CartItemCard(
                 ) {
                     Text(
                         text =
-                        DigitHelper.digitByLocateAndSeparator(
+                        digitByLocateAndSeparator(
                             DigitHelper.applyDiscount(
                                 item.price,
                                 item.discountPercent
@@ -340,6 +342,28 @@ fun CartItemCard(
                     )
 
                 }
+
+
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8 .dp),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text =
+                    stringResource(id = R.string.save_to_next_list),
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.LightCyan
+                )
+                Icon(
+                    imageVector = Icons.Filled.KeyboardArrowLeft,
+                    contentDescription = "",
+                    tint = MaterialTheme.colorScheme.LightCyan
+                )
             }
         }
 

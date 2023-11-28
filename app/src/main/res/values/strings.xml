@@ -49,5 +49,7 @@
     <string name="fast_send">Fast send</string>
     <string name="product">product</string>
 
+    <string name="save_to_next_list">Save to next shopping list</string>
+
 
 </resources>
