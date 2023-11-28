@@ -92,7 +92,7 @@ fun SuggestListSection(
         suggestedList.forEach {
             SuggestionItemCard(it) {
                 viewModel.insertCartItem(
-                    car = CartItem(
+                    item = CartItem(
                         itemId = it._id,
                         name = it.name,
                         seller = it.seller,

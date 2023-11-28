@@ -1,6 +1,5 @@
 package com.kazemieh.www.shop.repository
 
-import com.kazemieh.www.shop.data.model.ResponseResult
 import com.kazemieh.www.shop.data.model.basket.CartItem
 import com.kazemieh.www.shop.data.model.basket.CartStatus
 import com.kazemieh.www.shop.data.model.home.StoreProduct
@@ -23,7 +22,15 @@ class BasketRepository @Inject constructor(
             api.getSuggestedItems()
         }
 
-    suspend fun insertCartItem(car: CartItem) = dao.insertCartItem(car)
+    suspend fun insertCartItem(item: CartItem) = dao.insertCartItem(item)
+
+    suspend fun removeFromCart(item: CartItem) = dao.removeFromCart(item)
+
+    suspend fun changeCountCartItem(id: String, newCount: Int) =
+        dao.changeCountCartItem(id, newCount)
+
+    suspend fun changeStatusCartItem(id: String, newCartStatus: CartStatus) =
+        dao.changeStatusCartItem(id, newCartStatus)
 
 
 }

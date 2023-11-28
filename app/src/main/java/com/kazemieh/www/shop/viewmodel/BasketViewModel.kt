@@ -3,6 +3,7 @@ package com.kazemieh.www.shop.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kazemieh.www.shop.data.model.basket.CartItem
+import com.kazemieh.www.shop.data.model.basket.CartStatus
 import com.kazemieh.www.shop.data.model.home.StoreProduct
 import com.kazemieh.www.shop.data.remote.NetworkResult
 import com.kazemieh.www.shop.repository.BasketRepository
@@ -27,9 +28,29 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
         }
     }
 
-    fun insertCartItem(car: CartItem) {
+    fun insertCartItem(item: CartItem) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.insertCartItem(car)
+            repository.insertCartItem(item)
         }
     }
+
+    fun removeFromCart(item: CartItem) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.removeFromCart(item)
+        }
+    }
+
+    fun changeCountCartItem(id: String, newCount: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.changeCountCartItem(id, newCount)
+        }
+    }
+
+    fun changeStatusCartItem(id: String, newCartStatus: CartStatus) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.changeStatusCartItem(id, newCartStatus)
+        }
+    }
+
+
 }

@@ -57,9 +57,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.data.model.basket.CartItem
+import com.kazemieh.www.shop.data.model.basket.CartStatus
 import com.kazemieh.www.shop.ui.theme.LightCyan
 import com.kazemieh.www.shop.ui.theme.LightGreen
 import com.kazemieh.www.shop.ui.theme.LightRed
@@ -74,11 +76,13 @@ import com.kazemieh.www.shop.ui.theme.spacing
 import com.kazemieh.www.shop.util.Constants
 import com.kazemieh.www.shop.util.DigitHelper
 import com.kazemieh.www.shop.util.DigitHelper.digitByLocateAndSeparator
+import com.kazemieh.www.shop.viewmodel.BasketViewModel
 
 
 @Composable
 fun CartItemCard(
-    item: CartItem
+    item: CartItem,
+    viewModel: BasketViewModel = hiltViewModel()
 ) {
 
     var count by remember {
@@ -278,6 +282,7 @@ fun CartItemCard(
                                 .clickable(
                                     onClick = {
                                         count++
+                                        viewModel.changeCountCartItem(item.itemId, count)
                                     },
                                     interactionSource = createMutableInteractionSource(),
                                     indication = createIndication(
@@ -302,7 +307,13 @@ fun CartItemCard(
                                 .size(24.dp)
                                 .clickable(
                                     onClick = {
-                                        if (item.count == 1) count = 1 else count--
+                                        if (item.count == 1) {
+                                            count = 1
+                                            viewModel.removeFromCart(item)
+                                        } else {
+                                            count--
+                                            viewModel.changeCountCartItem(item.itemId, count)
+                                        }
 
                                     },
                                     interactionSource = createMutableInteractionSource(),
