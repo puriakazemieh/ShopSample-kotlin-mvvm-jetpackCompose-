@@ -10,6 +10,9 @@ object Constants {
     const val DATASTORE_NAME = "MAY_SHOP_DATA_STORE"
     var USER_LANGUAGE = "USER_LANGUAGE"
 
+    const val SHOPPING_CART_TABLE = "shopping_cart"
+    const val DATABASE_NAME = "shop_database"
+
     const val NETWORK_TIME_OUT_SECOND = 60L
     const val BASE_URL = "https://dig-za0p.onrender.com"
     const val API_KEY = BuildConfig.X_API_KEY

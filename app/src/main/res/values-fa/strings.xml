@@ -18,5 +18,62 @@
     <string name="see_all">مشاهده همه</string>
     <string name="amazing_for_app">شگفت انگیز اختصاصی اپ</string>
     <string name="category_title">خرید بر اساس دسته‌بندی</string>
+    <string name="best_selling_products">پرفروش‌ترین کالاها</string>
+    <string name="most_visited_products">پربازدیدترین محصولات</string>
+    <string name="favorite_product">محبوب‌ترین محصولات</string>
+    <string name="most_discounted_products">منتخب محصولات حراج و تخفیف</string>
+
+    <string name="commodity">کالا</string>
+
+
+    <string name="industrial_tools_and_equipment">ابزار و تجهیزات صنعتی</string>
+    <string name="digital_goods">کالای دیجیتال</string>
+    <string name="mobile">موبایل</string>
+    <string name="supermarket_product">کالای سوپرمارکتی</string>
+    <string name="fashion_and_clothing">مد و پوشاک</string>
+    <string name="native_and_local_products">محصولات بومی و محلی</string>
+    <string name="toys_children_and_babies">اسباب بازی، کودک و نوزاد</string>
+    <string name="beauty_and_health">زیبایی و سلامت</string>
+    <string name="home_and_kitchen">خانه و آشپزخانه</string>
+    <string name="books_and_stationery">کتاب و لوازم تحریر</string>
+    <string name="sports_and_travel">ورزش و سفر</string>
+    <string name="cart">سبد خرید</string>
+    <string name="next_cart_list">لیست خرید بعدی</string>
+    <string name="cart_is_empty">سبد خرید شما خالی است!</string>
+    <string name="suggestion_for_you">پیشنهاد برای شما</string>
+
+
+    <string name="your_shopping_list">لیست کالاهای شما</string>
+    <string name="warranty">گارانتی اصالت و سلامت فیزیکی کالا</string>
+    <string name="digikala">دیجی‌کالا</string>
+    <string name="digikala_send">ارسال دیجی کالا</string>
+    <string name="fast_send">ارسال سریع</string>
+    <string name="product">کالا</string>
+
+    <string name="save_to_next_list">ذخیره در لیست خرید بعدی</string>
+    <string name="delete_from_list">حذف از لیست</string>
+    <string name="next_cart_list_is_empty">لیست خرید بعدی شما خالی است!</string>
+    <string name="next_cart_list_is_empty_msg">شما می‌توانید محصولاتی که به سبد خرید خود افزوده‌اید و فعلا قصد خرید آن‌ها را ندارید، در لیست خرید بعدی قرار داده و هر زمان مایل بودید آن‌ها را به سبد خرید اضافه کرده و خرید آن‌ها را تکمیل کنید.</string>
+    <string name="please_wait">کمی صبر کنید…</string>
+
+
+    <string name="basket_summary">خلاصه سبد</string>
+    <string name="goods"> کالا</string>
+    <string name="digiclub_score">امتیاز دیجی‌کلاب</string>
+    <string name="score">امتیاز</string>
+    <string name="dot_bullet">•</string>
+    <string name="shipping_cost_alert">هزینه ارسال بر اساس آدرس، زمان تحویل، وزن و حجم مرسوله شما محاسبه می‌شود</string>
+
+    <string name="goods_price">قیمت کالاها</string>
+    <string name="goods_discount">تخفیف کالاها</string>
+    <string name="goods_total_price">جمع سبد خرید</string>
+    <string name="digiclub_description">بعد از پایان مهلت مرجوعی، برای دریافت امتیاز به صفحه ماموریت‌های کلابی سر بزنید</string>
+    <string name="purchase_process">ادامه فرآیند خرید</string>
+    <string name="discount">تومان تخفیف</string>
+
+
+
+
+
 
 </resources>

@@ -1,6 +1,5 @@
 package com.kazemieh.www.shop.di
 
-import com.kazemieh.www.shop.data.remote.HomeApiInterface
 import com.kazemieh.www.shop.util.Constants.API_KEY
 import com.kazemieh.www.shop.util.Constants.BASE_URL
 import com.kazemieh.www.shop.util.Constants.NETWORK_TIME_OUT_SECOND

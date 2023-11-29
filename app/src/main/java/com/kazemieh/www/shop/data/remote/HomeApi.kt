@@ -8,7 +8,7 @@ import com.kazemieh.www.shop.data.model.home.StoreProduct
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface HomeApiInterface {
+interface HomeApi {
 
     @GET("/api/v1/getSlider")
     suspend fun getSlider(): Response<ResponseResult<List<Slider>>>
@@ -35,6 +35,18 @@ interface HomeApiInterface {
 
     @GET("/api/v1/getBestsellerProducts")
     suspend fun getBestSellerItems() : Response<ResponseResult<List<StoreProduct>>>
+
+    @GET("/api/v1/getMostVisitedProducts")
+    suspend fun getMostVisitedItems() : Response<ResponseResult<List<StoreProduct>>>
+
+
+    @GET("/api/v1/getMostFavoriteProducts")
+    suspend fun getMostFavoriteItems() : Response<ResponseResult<List<StoreProduct>>>
+
+
+    @GET("/api/v1/getMostDiscountedProducts")
+    suspend fun getMostDiscountedItems() : Response<ResponseResult<List<StoreProduct>>>
+
 
 
 }

@@ -50,7 +50,7 @@ fun Home(
 
 
 @Composable
-fun SwipeRefreshSection(viewModel: HomeViewModel, navController: NavHostController) {
+private fun SwipeRefreshSection(viewModel: HomeViewModel, navController: NavHostController) {
     val refreshScope = rememberCoroutineScope()
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = false)
     SwipeRefresh(
@@ -62,8 +62,9 @@ fun SwipeRefreshSection(viewModel: HomeViewModel, navController: NavHostControll
             }
         }) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize()
-                .padding(bottom = 80 .dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 80.dp)
         ) {
             item { SearchBarSection() }
             item { TopSliderSection() }
@@ -73,13 +74,13 @@ fun SwipeRefreshSection(viewModel: HomeViewModel, navController: NavHostControll
             item { SuperMarketOfferSection(navController) }
             item { CategoryListSection(navController) }
             item { CenterBannerSection(1) }
-
+            item { BestSellerOfferSection() }
             item { CenterBannerSection(2) }
-
+            item { MostVisitedOfferSection() }
             item { CenterBannerSection(3) }
-
+            item { MostFavoriteProductSection() }
             item { CenterBannerSection(4) }
-
+            item { MostDiscountedSection() }
             item { CenterBannerSection(5) }
 
         }

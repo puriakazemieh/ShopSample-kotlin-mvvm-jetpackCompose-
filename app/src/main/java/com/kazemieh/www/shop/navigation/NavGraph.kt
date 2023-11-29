@@ -6,8 +6,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.kazemieh.www.shop.ui.screens.BasketScreen
-import com.kazemieh.www.shop.ui.screens.CategoryScreen
+import com.kazemieh.www.shop.ui.screens.basket.BasketScreen
+import com.kazemieh.www.shop.ui.screens.category.CategoryScreen
 import com.kazemieh.www.shop.ui.screens.home.HomeScreen
 import com.kazemieh.www.shop.ui.screens.ProfileScreen
 import com.kazemieh.www.shop.ui.screens.SplashScreen
@@ -17,7 +17,7 @@ import com.kazemieh.www.shop.ui.screens.home.WebPageScreen
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Splash.route
+        startDestination = Screen.Basket.route
     ) {
 
         composable(route = Screen.Splash.route) {

@@ -12,19 +12,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kazemieh.www.shop.R
+import com.kazemieh.www.shop.ui.component.IconWithRotate
 import com.kazemieh.www.shop.ui.theme.spacing
+import com.kazemieh.www.shop.util.Constants
 
 @Composable
 fun AmazingOfferCard(
@@ -44,7 +45,8 @@ fun AmazingOfferCard(
     ) {
         Spacer(modifier = Modifier.height(40.dp))
         Image(
-            painter = painterResource(id = topImageResId), contentDescription = "",
+            painter = amazingLogoChangeByLanguage(),
+            contentDescription = "",
             modifier = Modifier
                 .fillMaxWidth()
                 .height(96.dp)
@@ -67,18 +69,24 @@ fun AmazingOfferCard(
             Text(
                 text = stringResource(id = R.string.see_all),
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.White,
+//                color = Color.White,
                 fontWeight = FontWeight.SemiBold
             )
 
-            Icon(
-                imageVector = Icons.Filled.KeyboardArrowLeft,
-                contentDescription = "",
-                tint = Color.White
-            )
+            IconWithRotate(Icons.Filled.KeyboardArrowLeft)
         }
 
 
     }
 
+}
+
+
+@Composable
+private fun amazingLogoChangeByLanguage(): Painter {
+    return if (Constants.USER_LANGUAGE == Constants.ENGLISH_LANG) {
+        painterResource(id =R.drawable.amazing_en)
+    } else {
+        painterResource(id = R.drawable.amazings)
+    }
 }

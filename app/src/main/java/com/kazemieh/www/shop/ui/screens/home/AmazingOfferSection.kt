@@ -14,12 +14,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.data.model.home.AmazingItem
 import com.kazemieh.www.shop.data.remote.NetworkResult
 import com.kazemieh.www.shop.ui.theme.LightRed
+import com.kazemieh.www.shop.util.Constants
 import com.kazemieh.www.shop.viewmodel.HomeViewModel
 
 @Composable
@@ -75,3 +78,5 @@ fun AmazingOfferSection(
     }
 
 }
+
+
