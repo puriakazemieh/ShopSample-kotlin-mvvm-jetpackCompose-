@@ -40,7 +40,7 @@ fun ShoppingCart(
         BasketScreenState.Loading
     )
 
-
+    val cartDetails = viewModel.cartDetail.collectAsState()
 
 //    val currentCartItem = remember {
 //        mutableStateOf(emptyList<CartItem>())
@@ -59,8 +59,8 @@ fun ShoppingCart(
             .padding(bottom = 80.dp)
     ) {
 
-        when(currentCartItemsState){
-            is BasketScreenState.Loading->{
+        when (currentCartItemsState) {
+            is BasketScreenState.Loading -> {
                 item {
                     Column(
                         modifier = Modifier
@@ -79,7 +79,8 @@ fun ShoppingCart(
                     }
                 }
             }
-            is BasketScreenState.Success->{
+
+            is BasketScreenState.Success -> {
                 if ((currentCartItemsState as BasketScreenState.Success<List<CartItem>>).data.isEmpty()) {
                     item { EmptyBasketShopping() }
                     item { SuggestListSection() }
@@ -87,10 +88,13 @@ fun ShoppingCart(
                     items((currentCartItemsState as BasketScreenState.Success<List<CartItem>>).data) {
                         CartItemCard(it, CartStatus.CURRENT_CART)
                     }
-                    item { CartPriceDetailSection((currentCartItemsState as BasketScreenState.Success<List<CartItem>>).data[0]) }
+                    item {
+                        CartPriceDetailSection(cartDetails = cartDetails.value)
+                    }
                 }
             }
-            is BasketScreenState.Error->{}
+
+            is BasketScreenState.Error -> {}
         }
 
 

@@ -2,12 +2,14 @@ package com.kazemieh.www.shop.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kazemieh.www.shop.data.model.basket.CartDetails
 import com.kazemieh.www.shop.data.model.basket.CartItem
 import com.kazemieh.www.shop.data.model.basket.CartStatus
 import com.kazemieh.www.shop.data.model.home.StoreProduct
 import com.kazemieh.www.shop.data.remote.NetworkResult
 import com.kazemieh.www.shop.repository.BasketRepository
 import com.kazemieh.www.shop.ui.screens.basket.BasketScreenState
+import com.kazemieh.www.shop.util.DigitHelper.applyDiscount
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -35,10 +37,21 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
         MutableStateFlow(BasketScreenState.Loading)
     val nextCartItems: StateFlow<BasketScreenState<List<CartItem>>> = _nextCartItems
 
+
+    val currentCartItemCount: Flow<Int> = repository.currentCartItemCount
+    val nextCartItemCount: Flow<Int> = repository.nextCartItemCount
+
+
     init {
         viewModelScope.launch {
             repository.currentCartItems.collectLatest {
                 _currentCartItems.emit(BasketScreenState.Success(it))
+
+            }
+        }
+        viewModelScope.launch {
+            repository.currentCartItems.collectLatest {
+                calculateCartDetails(it)
             }
         }
 
@@ -80,5 +93,27 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
         }
     }
 
+
+    val cartDetail = MutableStateFlow(CartDetails(0, 0, 0, 0))
+
+    private fun calculateCartDetails(items: List<CartItem>) {
+        var totalCount = 0
+        var totalPrice: Long = 0
+        var totalDiscount = 0L
+        items.forEach {
+            totalPrice += it.price * it.count
+            totalDiscount += applyDiscount(it.price, it.discountPercent)
+            totalCount += it.count
+        }
+        val payablePrice: Long = totalPrice - totalDiscount
+        cartDetail.value = (
+                CartDetails(
+                    totalCount = totalCount,
+                    totalPrice = totalPrice,
+                    totalDiscount = totalDiscount,
+                    payablePrice = payablePrice
+                )
+                )
+    }
 
 }

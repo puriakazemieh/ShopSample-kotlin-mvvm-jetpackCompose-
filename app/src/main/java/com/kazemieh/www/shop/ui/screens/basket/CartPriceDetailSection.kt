@@ -26,16 +26,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kazemieh.www.shop.R
+import com.kazemieh.www.shop.data.model.basket.CartDetails
 import com.kazemieh.www.shop.data.model.basket.CartItem
 import com.kazemieh.www.shop.ui.theme.LightRed
 import com.kazemieh.www.shop.ui.theme.roundedShape
 import com.kazemieh.www.shop.ui.theme.semiDarkText
 import com.kazemieh.www.shop.ui.theme.spacing
 import com.kazemieh.www.shop.util.DigitHelper
+import com.kazemieh.www.shop.util.DigitHelper.digitByLocateAndSeparator
 
 
 @Composable
-fun CartPriceDetailSection(item: CartItem) {
+fun CartPriceDetailSection(cartDetails: CartDetails) {
+
+
     Column(
         modifier = Modifier.padding(MaterialTheme.spacing.medium)
     ) {
@@ -51,7 +55,7 @@ fun CartPriceDetailSection(item: CartItem) {
                 modifier = Modifier.padding(start = MaterialTheme.spacing.small)
             )
             Text(
-                text = "${item.count}  ${stringResource(id = R.string.product)}",
+                text = "${cartDetails.totalCount}   ${stringResource(id = R.string.product)}",
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = MaterialTheme.spacing.small),
                 color = MaterialTheme.colorScheme.semiDarkText
@@ -60,14 +64,20 @@ fun CartPriceDetailSection(item: CartItem) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        RowPrice(title = stringResource(id = R.string.goods_price), price = item.price)
+        RowPrice(
+            title = stringResource(id = R.string.goods_price),
+            price = digitByLocateAndSeparator(cartDetails.totalPrice.toString())
+        )
         RowPrice(
             title = stringResource(id = R.string.goods_discount),
-            price = item.price,
-            discountPercent = item.discountPercent
+            price = digitByLocateAndSeparator(cartDetails.totalDiscount.toString()),
+            discountPercent = cartDetails.totalDiscount
         )
 
-        RowPrice(title = stringResource(id = R.string.goods_total_price), price = item.price)
+        RowPrice(
+            title = stringResource(id = R.string.goods_total_price),
+            price = digitByLocateAndSeparator(cartDetails.payablePrice.toString())
+        )
 
 
         Text(
@@ -152,13 +162,7 @@ fun CartPriceDetailSection(item: CartItem) {
                 )
                 Row {
                     Text(
-                        text =
-                        DigitHelper.digitByLocateAndSeparator(
-                            DigitHelper.applyDiscount(
-                                item.price,
-                                item.discountPercent
-                            ).toString()
-                        ),
+                        text = digitByLocateAndSeparator(cartDetails.payablePrice.toString()),
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.SemiBold
                     )
@@ -180,9 +184,11 @@ fun CartPriceDetailSection(item: CartItem) {
 
 }
 
-//LocalContentColor.current
 @Composable
-fun RowPrice(title: String, price: Long, discountPercent: Int = 0) {
+fun RowPrice(title: String, price: String, discountPercent: Long = 0) {
+
+    val color =
+        if (discountPercent != 0L) MaterialTheme.colorScheme.LightRed else LocalContentColor.current
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -200,16 +206,10 @@ fun RowPrice(title: String, price: Long, discountPercent: Int = 0) {
 
         Row {
             Text(
-                text =
-                DigitHelper.digitByLocateAndSeparator(
-                    DigitHelper.applyDiscount(
-                        price,
-                        discountPercent
-                    ).toString()
-                ),
+                text = price,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.SemiBold,
-                color = if (discountPercent != 0) MaterialTheme.colorScheme.LightRed else LocalContentColor.current
+                color = color
             )
             Icon(
                 painter = currencyLogoChangeByLanguage(),
@@ -217,7 +217,7 @@ fun RowPrice(title: String, price: Long, discountPercent: Int = 0) {
                 modifier = Modifier
                     .size(MaterialTheme.spacing.semiLarge)
                     .padding(horizontal = MaterialTheme.spacing.extraSmall),
-                tint = if (discountPercent != 0) MaterialTheme.colorScheme.LightRed else LocalContentColor.current
+                tint = color
             )
 
         }

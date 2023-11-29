@@ -33,5 +33,8 @@ class BasketRepository @Inject constructor(
     suspend fun changeStatusCartItem(id: String, newCartStatus: CartStatus) =
         dao.changeStatusCartItem(id, newCartStatus)
 
+    val currentCartItemCount = dao.getCartItemCount(CartStatus.CURRENT_CART)
+    val nextCartItemCount = dao.getCartItemCount(CartStatus.NEXT_CART)
+
 
 }
