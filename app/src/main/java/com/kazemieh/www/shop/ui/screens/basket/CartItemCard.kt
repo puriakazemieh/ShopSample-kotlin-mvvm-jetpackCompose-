@@ -88,13 +88,16 @@ fun CartItemCard(
 ) {
 
     var count by remember {
-        mutableStateOf(item.count)
+        mutableIntStateOf(item.count)
     }
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(MaterialTheme.spacing.small),
+            .padding(
+                horizontal = MaterialTheme.spacing.medium,
+                vertical = MaterialTheme.spacing.biggerSmall
+            ),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.cardBackground),
         elevation = CardDefaults.cardElevation(LocalElevation.current.veryExtraSmall)
 
@@ -264,8 +267,6 @@ fun CartItemCard(
             ) {
 
                 Card(
-                    modifier = Modifier
-                        .width(80.dp),
                     shape = MaterialTheme.roundedShape.extraSmall,
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.cardBackground),
                     elevation = CardDefaults.cardElevation(LocalElevation.current.veryExtraSmall)
@@ -274,7 +275,7 @@ fun CartItemCard(
                     if (mode == CartStatus.CURRENT_CART) {
                         Row(
                             modifier = Modifier
-                                .fillMaxWidth()
+//                                .fillMaxWidth()
                                 .padding(4.dp),
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
@@ -336,8 +337,22 @@ fun CartItemCard(
                     } else {
                         Row(
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(4.dp),
+//                                .fillMaxWidth()
+                                .padding(vertical = 4.dp, horizontal = 20.dp)
+                                .clickable(
+                                    onClick = {
+                                        viewModel.changeStatusCartItem(
+                                            item.itemId,
+                                            CartStatus.CURRENT_CART
+                                        )
+
+                                    },
+                                    interactionSource = createMutableInteractionSource(),
+                                    indication = createIndication(
+                                        color = Color.Gray,
+                                        bounded = true
+                                    )
+                                ),
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -346,22 +361,7 @@ fun CartItemCard(
                                 contentDescription = "",
                                 tint = MaterialTheme.colorScheme.LightRed,
                                 modifier = Modifier
-                                    .size(24.dp)
-                                    .clickable(
-                                        onClick = {
-
-                                            viewModel.changeStatusCartItem(
-                                                item.itemId,
-                                                CartStatus.CURRENT_CART
-                                            )
-
-                                        },
-                                        interactionSource = createMutableInteractionSource(),
-                                        indication = createIndication(
-                                            color = Color.Gray,
-                                            bounded = true
-                                        )
-                                    ),
+                                    .size(24.dp),
                             )
                         }
 

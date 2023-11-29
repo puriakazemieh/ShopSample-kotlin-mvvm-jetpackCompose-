@@ -87,6 +87,7 @@ fun ShoppingCart(
                     items((currentCartItemsState as BasketScreenState.Success<List<CartItem>>).data) {
                         CartItemCard(it, CartStatus.CURRENT_CART)
                     }
+                    item { CartPriceDetailSection((currentCartItemsState as BasketScreenState.Success<List<CartItem>>).data[0]) }
                 }
             }
             is BasketScreenState.Error->{}
