@@ -41,7 +41,12 @@ fun CartPriceDetailSection(cartDetails: CartDetails) {
 
 
     Column(
-        modifier = Modifier.padding(MaterialTheme.spacing.medium)
+        modifier = Modifier.padding(
+            start = MaterialTheme.spacing.medium,
+            end = MaterialTheme.spacing.medium,
+            top = MaterialTheme.spacing.medium,
+            bottom = 100 .dp,
+            )
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -123,61 +128,6 @@ fun CartPriceDetailSection(cartDetails: CartDetails) {
                 top = MaterialTheme.spacing.medium
             )
         )
-
-        Divider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = MaterialTheme.spacing.semiMedium)
-                .height(1.dp)
-                .alpha(0.4f),
-            color = Color.LightGray
-        )
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            Button(
-                onClick = { },
-                modifier = Modifier
-//                    .clip(MaterialTheme.roundedShape.extraSmall)
-                    .background(
-                        MaterialTheme.colorScheme.LightRed,
-                        MaterialTheme.roundedShape.small
-                    )
-                    .padding(horizontal = MaterialTheme.spacing.medium),
-//                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.LightRed)
-            ) {
-                Text(text = stringResource(id = R.string.basket_summary))
-
-            }
-            Column {
-                Text(
-                    text = stringResource(id = R.string.goods_total_price),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.semiDarkText,
-                    modifier = Modifier.padding(start = MaterialTheme.spacing.small)
-                )
-                Row {
-                    Text(
-                        text = digitByLocateAndSeparator(cartDetails.payablePrice.toString()),
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                    Icon(
-                        painter = currencyLogoChangeByLanguage(),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(MaterialTheme.spacing.semiLarge)
-                            .padding(horizontal = MaterialTheme.spacing.extraSmall)
-                    )
-
-                }
-            }
-        }
-
 
     }
 

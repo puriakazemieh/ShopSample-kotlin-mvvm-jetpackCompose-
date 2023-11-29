@@ -1,13 +1,20 @@
 package com.kazemieh.www.shop.ui.screens.basket
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,8 +33,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.data.model.basket.CartItem
 import com.kazemieh.www.shop.data.model.basket.CartStatus
+import com.kazemieh.www.shop.ui.theme.LightRed
 import com.kazemieh.www.shop.ui.theme.darkText
+import com.kazemieh.www.shop.ui.theme.roundedShape
+import com.kazemieh.www.shop.ui.theme.semiDarkText
 import com.kazemieh.www.shop.ui.theme.spacing
+import com.kazemieh.www.shop.util.DigitHelper
 import com.kazemieh.www.shop.viewmodel.BasketViewModel
 import kotlinx.coroutines.flow.collectLatest
 
@@ -52,51 +63,69 @@ fun ShoppingCart(
 //        }
 //    }
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(bottom = 80.dp)
+
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopCenter
     ) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(bottom = 80.dp)
+        ) {
 
-        when (currentCartItemsState) {
-            is BasketScreenState.Loading -> {
-                item {
-                    Column(
-                        modifier = Modifier
-                            .height(LocalConfiguration.current.screenHeightDp.dp - 60.dp)
-                            .fillMaxWidth()
-                            .padding(vertical = MaterialTheme.spacing.small),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Text(
-                            text = stringResource(R.string.please_wait),
-                            fontWeight = FontWeight.Bold,
-                            style = MaterialTheme.typography.titleSmall,
-                            color = MaterialTheme.colorScheme.darkText,
-                        )
-                    }
-                }
-            }
-
-            is BasketScreenState.Success -> {
-                if ((currentCartItemsState as BasketScreenState.Success<List<CartItem>>).data.isEmpty()) {
-                    item { EmptyBasketShopping() }
-                    item { SuggestListSection() }
-                } else {
-                    items((currentCartItemsState as BasketScreenState.Success<List<CartItem>>).data) {
-                        CartItemCard(it, CartStatus.CURRENT_CART)
-                    }
+            when (currentCartItemsState) {
+                is BasketScreenState.Loading -> {
                     item {
-                        CartPriceDetailSection(cartDetails = cartDetails.value)
+                        Column(
+                            modifier = Modifier
+                                .height(LocalConfiguration.current.screenHeightDp.dp - 60.dp)
+                                .fillMaxWidth()
+                                .padding(vertical = MaterialTheme.spacing.small),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = stringResource(R.string.please_wait),
+                                fontWeight = FontWeight.Bold,
+                                style = MaterialTheme.typography.titleSmall,
+                                color = MaterialTheme.colorScheme.darkText,
+                            )
+                        }
                     }
                 }
+
+                is BasketScreenState.Success -> {
+                    if ((currentCartItemsState as BasketScreenState.Success<List<CartItem>>).data.isEmpty()) {
+                        item { EmptyBasketShopping() }
+                        item { SuggestListSection() }
+                    } else {
+                        items((currentCartItemsState as BasketScreenState.Success<List<CartItem>>).data) {
+                            CartItemCard(it, CartStatus.CURRENT_CART)
+                        }
+                        item {
+                            CartPriceDetailSection(cartDetails = cartDetails.value)
+                        }
+                    }
+                }
+
+                is BasketScreenState.Error -> {}
             }
 
-            is BasketScreenState.Error -> {}
+
         }
 
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 80.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            ByProcessContinue(cartDetails.value.payablePrice)
+        }
 
     }
 }
