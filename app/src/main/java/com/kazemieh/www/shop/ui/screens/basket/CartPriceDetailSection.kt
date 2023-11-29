@@ -45,8 +45,8 @@ fun CartPriceDetailSection(cartDetails: CartDetails) {
             start = MaterialTheme.spacing.medium,
             end = MaterialTheme.spacing.medium,
             top = MaterialTheme.spacing.medium,
-            bottom = 100 .dp,
-            )
+            bottom = 100.dp,
+        )
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -73,10 +73,11 @@ fun CartPriceDetailSection(cartDetails: CartDetails) {
             title = stringResource(id = R.string.goods_price),
             price = digitByLocateAndSeparator(cartDetails.totalPrice.toString())
         )
+        val discountPercent=(1-cartDetails.payablePrice.toDouble()/ cartDetails.totalPrice.toDouble()) * 100
         RowPrice(
             title = stringResource(id = R.string.goods_discount),
             price = digitByLocateAndSeparator(cartDetails.totalDiscount.toString()),
-            discountPercent = cartDetails.totalDiscount
+            discountPercent = discountPercent.toLong()
         )
 
         RowPrice(
@@ -118,7 +119,7 @@ fun CartPriceDetailSection(cartDetails: CartDetails) {
                     modifier = Modifier.padding(start = MaterialTheme.spacing.small)
                 )
             }
-            Text(text = stringResource(id = R.string.score))
+            Text(text = " ${(cartDetails.payablePrice / 10_000)} ${stringResource(id = R.string.score)}")
         }
 
         Text(
@@ -139,6 +140,9 @@ fun RowPrice(title: String, price: String, discountPercent: Long = 0) {
 
     val color =
         if (discountPercent != 0L) MaterialTheme.colorScheme.LightRed else LocalContentColor.current
+
+    val ourPrice =
+        if (discountPercent != 0L) "(${digitByLocateAndSeparator(discountPercent.toString())}%) $price" else price
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -156,7 +160,7 @@ fun RowPrice(title: String, price: String, discountPercent: Long = 0) {
 
         Row {
             Text(
-                text = price,
+                text = ourPrice,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.SemiBold,
                 color = color

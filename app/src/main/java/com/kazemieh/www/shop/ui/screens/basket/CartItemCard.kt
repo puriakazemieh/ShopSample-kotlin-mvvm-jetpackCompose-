@@ -368,31 +368,46 @@ fun CartItemCard(
 
                     }
                 }
+// todo اگر محصولی در سبد خرید بعدی بود و از قسمت فروشگاه به سبد خرید اضافه کرد در سبد خرید نشون نمیده و باید درستش کنم
 
-
-                Row(
+                val discountAmount = (item.price * item.discountPercent) / 100
+                Column(
                     modifier = Modifier
                         .padding(start = 32.dp)
                 ) {
                     Text(
                         text =
-                        digitByLocateAndSeparator(
-                            DigitHelper.applyDiscount(
-                                item.price,
-                                item.discountPercent
-                            ).toString()
-                        ),
+                        "${digitByLocateAndSeparator((discountAmount).toString())} ${
+                            stringResource(
+                                id = R.string.discount
+                            )
+                        }",
                         style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.ExtraLight,
+                        color = MaterialTheme.colorScheme.LightRed
                     )
-                    Icon(
-                        painter = currencyLogoChangeByLanguage(),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(MaterialTheme.spacing.semiLarge)
-                            .padding(horizontal = MaterialTheme.spacing.extraSmall)
-                    )
+                    Row(
+                    ) {
+                        Text(
+                            text =
+                            digitByLocateAndSeparator(
+                                DigitHelper.applyDiscount(
+                                    item.price,
+                                    item.discountPercent
+                                ).toString()
+                            ),
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Icon(
+                            painter = currencyLogoChangeByLanguage(),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(MaterialTheme.spacing.semiLarge)
+                                .padding(horizontal = MaterialTheme.spacing.extraSmall)
+                        )
 
+                    }
                 }
 
 

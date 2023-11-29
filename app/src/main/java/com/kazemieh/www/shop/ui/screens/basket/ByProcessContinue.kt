@@ -1,7 +1,6 @@
 package com.kazemieh.www.shop.ui.screens.basket
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,7 +25,6 @@ import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.ui.theme.LightRed
 import com.kazemieh.www.shop.ui.theme.LocalElevation
 import com.kazemieh.www.shop.ui.theme.cardBackground
-import com.kazemieh.www.shop.ui.theme.darkText
 import com.kazemieh.www.shop.ui.theme.roundedShape
 import com.kazemieh.www.shop.ui.theme.semiDarkText
 import com.kazemieh.www.shop.ui.theme.spacing
