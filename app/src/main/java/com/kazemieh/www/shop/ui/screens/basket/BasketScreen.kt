@@ -15,6 +15,7 @@ import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,20 +44,13 @@ fun BasketScreen(navController: NavHostController) {
 @Composable
 fun Basket(navController: NavHostController, viewModel: BasketViewModel = hiltViewModel()) {
 
-    val currentCartItemCount = remember {
-        mutableStateOf(0)
-    }
 
-    val nextCartItemCount = remember {
-        mutableStateOf(0)
-    }
+    val currentCartItemCount = viewModel.currentCartItemCount.collectAsState(0)
+
+    val nextCartItemCount = remember { mutableStateOf(0) }
 
     LaunchedEffect(key1 = true) {
-        launch {
-            viewModel.currentCartItemCount.collectLatest {
-                currentCartItemCount.value = it
-            }
-        }
+
         launch {
             viewModel.nextCartItemCount.collectLatest {
                 nextCartItemCount.value = it
@@ -115,7 +109,7 @@ fun Basket(navController: NavHostController, viewModel: BasketViewModel = hiltVi
                             }
 
                             if (cartCounter > 0) {
-                                Spacer(modifier = Modifier.width(10 .dp))
+                                Spacer(modifier = Modifier.width(10.dp))
                                 SetBadgeToTap(
                                     selectedTabIndex = selectedTabIndex,
                                     index = index,
