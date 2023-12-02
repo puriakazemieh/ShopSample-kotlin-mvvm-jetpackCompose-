@@ -81,3 +81,9 @@ val ColorScheme.LightCyan: Color
 val ColorScheme.LightGreen: Color
     @Composable
     get() = Color(0xff86bf3c)
+
+
+val ColorScheme.CursorColor : Color
+    @Composable
+    get() = Color(0xFF018577)
+

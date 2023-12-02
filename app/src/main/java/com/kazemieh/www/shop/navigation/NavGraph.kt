@@ -9,7 +9,7 @@ import androidx.navigation.navArgument
 import com.kazemieh.www.shop.ui.screens.basket.BasketScreen
 import com.kazemieh.www.shop.ui.screens.category.CategoryScreen
 import com.kazemieh.www.shop.ui.screens.home.HomeScreen
-import com.kazemieh.www.shop.ui.screens.ProfileScreen
+import com.kazemieh.www.shop.ui.screens.profile.ProfileScreen
 import com.kazemieh.www.shop.ui.screens.SplashScreen
 import com.kazemieh.www.shop.ui.screens.home.WebPageScreen
 
@@ -17,7 +17,7 @@ import com.kazemieh.www.shop.ui.screens.home.WebPageScreen
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Basket.route
+        startDestination = Screen.Profile.route
     ) {
 
         composable(route = Screen.Splash.route) {
