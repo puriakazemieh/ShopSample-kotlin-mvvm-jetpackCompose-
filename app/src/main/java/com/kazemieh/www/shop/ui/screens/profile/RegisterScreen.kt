@@ -1,5 +1,6 @@
 package com.kazemieh.www.shop.ui.screens.profile
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,11 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -25,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kazemieh.www.shop.R
+import com.kazemieh.www.shop.data.remote.NetworkResult
 import com.kazemieh.www.shop.ui.theme.darkText
 import com.kazemieh.www.shop.ui.theme.selectedBottomBar
 import com.kazemieh.www.shop.ui.theme.spacing
@@ -101,7 +108,7 @@ fun RegisterScreen(
         MyButton(text = stringResource(id = R.string.digikala_login)) {
             if (isValidPassword(profileViewModel.inputPasswordState)) {
 
-//                profileViewModel.login()
+                profileViewModel.login()
 
             } else {
                 Toast.makeText(
@@ -112,5 +119,29 @@ fun RegisterScreen(
             }
         }
 
+    }
+
+
+    var loading by remember {
+        mutableStateOf(false)
+    }
+    val loginResponse by profileViewModel.loginResponse.collectAsState()
+    when (loginResponse) {
+        is NetworkResult.Success -> {
+            profileViewModel.screenState = ProfileScreenState.PROFILE_STATE
+            Toast.makeText(
+                context,
+                loginResponse.message,
+                Toast.LENGTH_LONG
+            ).show()
+            loading = false
+        }
+        is NetworkResult.Error -> {
+            loading = false
+            Log.e("3636", "loginResponse error : ${loginResponse.message}")
+        }
+        is NetworkResult.Loading -> {
+            loading = true
+        }
     }
 }

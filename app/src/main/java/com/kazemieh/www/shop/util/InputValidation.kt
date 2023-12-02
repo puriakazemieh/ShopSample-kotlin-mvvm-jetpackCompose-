@@ -15,7 +15,7 @@ object InputValidation {
     fun isValidPassword(input: String): Boolean {
         return input.isNotEmpty()
                 && input.isNotBlank()
-                && input.length>6
+                && input.length >= 6
     }
 
     fun isValidEmail(input: String): Boolean {
