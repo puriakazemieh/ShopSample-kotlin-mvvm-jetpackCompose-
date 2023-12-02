@@ -21,6 +21,9 @@ object Constants {
     const val BASE_URL = "https://dig-za0p.onrender.com"
     const val API_KEY = BuildConfig.X_API_KEY
 
+    const val KEY = BuildConfig.KEY
+    const val IV = BuildConfig.IV
+
     const val DIGIJET_URL = "https://www.digikalajet.com/user/address"
     const val AUCTION_URL = "https://www.digistyle.com/sale-landing/?utm_source=digikala&utm_medium=circle_badge&utm_campaign=style&promo_name=style&promo_position=circle_badge"
     const val DIGIPAY_URL = "https://www.digikala.com/my-digipay/?promo_name=my-digipay&promo_position=circle_badge"

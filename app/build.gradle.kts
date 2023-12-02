@@ -30,6 +30,8 @@ android {
         }
 
         buildConfigField("String" , "X_API_KEY" , apikeyProperties["X_API_KEY"].toString())
+        buildConfigField("String" , "KEY" , apikeyProperties["KEY"].toString())
+        buildConfigField("String" , "IV" , apikeyProperties["IV"].toString())
 
     }
 
