@@ -26,11 +26,12 @@ fun MyButton(
         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.LightRed),
         modifier = Modifier
             .fillMaxWidth()
+            .padding(top = MaterialTheme.spacing.medium)
             .height(65.dp)
             .padding(
                 start = MaterialTheme.spacing.semiLarge,
                 end = MaterialTheme.spacing.semiLarge,
-                bottom = MaterialTheme.spacing.medium
+                bottom = MaterialTheme.spacing.medium,
             ),
         shape = MaterialTheme.roundedShape.small
     ) {

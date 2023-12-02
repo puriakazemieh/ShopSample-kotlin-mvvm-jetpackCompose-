@@ -1,5 +1,6 @@
 package com.kazemieh.www.shop.ui.screens.profile
 
+import android.provider.ContactsContract.Profile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -36,105 +37,32 @@ import com.kazemieh.www.shop.ui.theme.selectedBottomBar
 import com.kazemieh.www.shop.ui.theme.semiDarkText
 import com.kazemieh.www.shop.ui.theme.spacing
 import com.kazemieh.www.shop.viewmodel.DataStoreViewModel
+import com.kazemieh.www.shop.viewmodel.ProfileViewModel
 
 @Composable
 fun ProfileScreen(
     navController: NavHostController,
-    datastore: DataStoreViewModel = hiltViewModel()
+    datastore: DataStoreViewModel = hiltViewModel(),
+    profileViewModel: ProfileViewModel = hiltViewModel()
 ) {
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        item {
-            Row (
-                modifier = Modifier
-                    .fillMaxSize(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ){
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        painter = painterResource(
-                            id = R.drawable.digi_settings
-                        ), contentDescription = "",
-                        modifier = Modifier
-                            .padding(
-                                MaterialTheme.spacing.small
-                            )
-                            .size(MaterialTheme.spacing.semiLarge),
-                        tint = MaterialTheme.colorScheme.selectedBottomBar
-                    )
-                }
-                IconButton(onClick = {}) {
-                    Icon(
-                        Icons.Filled.Close,
-                        contentDescription = "Close",
-                        modifier = Modifier
-                            .padding(MaterialTheme.spacing.small),
-                        tint = MaterialTheme.colorScheme.selectedBottomBar
-                    )
-                }
-            }
-        }
-        item { Spacer(modifier = Modifier.height(MaterialTheme.spacing.large)) }
-        item {
-            Image(
-                modifier = Modifier
-                    .size(200.dp),
-                painter = painterResource(id = R.drawable.digi_smile),
-                contentDescription = "",
-            )
-        }
-        item { Spacer(modifier = Modifier.height(MaterialTheme.spacing.large)) }
-        item {
-            Text(
-                modifier = Modifier.padding(
-                    horizontal = MaterialTheme.spacing.semiLarge
-                ),
-                style = MaterialTheme.typography.bodySmall,
-                text = stringResource(id = R.string.loginTxt),
-                color = MaterialTheme.colorScheme.darkText,
-                fontWeight = FontWeight.Bold
-            )
-        }
-        item {
-            MyEditText(
-                value = "",
-                placeholder = stringResource(id = R.string.phone_and_email),
-                onValueChange = {
 
-                }
-            )
-        }
-        item {
-            MyButton(text = stringResource(id =R.string.digikala_entry)) {
-
-            }
-        }
-        item {
-            Divider(
-                color = MaterialTheme.colorScheme.searchBarBg,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .width(1.dp)
-                    .padding(top = MaterialTheme.spacing.medium)
-            )
-        }
-        item {
-            TermsAndRulesText(
-                fullText = stringResource(id = R.string.terms_and_rules_full),
-                underlinedText = listOf(
-                    stringResource(id = R.string.terms_and_rules),
-                    stringResource(id = R.string.privacy_and_rules)
-                ),
-                textColor = MaterialTheme.colorScheme.semiDarkText,
-                fontSize = 10.sp,
-                textAlign = TextAlign.Center
-            )
+    when (profileViewModel.screenState) {
+        ProfileScreenState.LOGIN_STATE -> {
+            LoginScreen(navController = navController)
         }
 
-
+        ProfileScreenState.PROFILE_STATE -> {
+            Profile()
+        }
+        ProfileScreenState.REGISTER_STATE -> {
+            RegisterScreen()
+        }
     }
 
+}
+
+@Composable
+fun Profile() {
+    Text(text = "profile")
 }
 

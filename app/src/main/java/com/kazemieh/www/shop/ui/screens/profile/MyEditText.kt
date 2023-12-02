@@ -23,15 +23,15 @@ import com.kazemieh.www.shop.ui.theme.spacing
 @Composable
 fun MyEditText(
     value: String,
-    onValueChange: () -> Unit,
+    onValueChange: (it:String) -> Unit,
     placeholder:String,
 ) {
     TextField(
         value = value,
-        onValueChange = { onValueChange() },
+        onValueChange = { onValueChange(it) },
         modifier = Modifier
             .fillMaxWidth()
-            .height(92.dp)
+//            .height(92.dp)
             .padding(
                 start = MaterialTheme.spacing.semiSmall,
                 end = MaterialTheme.spacing.semiSmall,
