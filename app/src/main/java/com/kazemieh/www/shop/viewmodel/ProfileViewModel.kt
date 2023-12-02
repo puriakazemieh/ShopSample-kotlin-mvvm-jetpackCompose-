@@ -21,16 +21,18 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(private val repository: ProfileRepository) :
     ViewModel() {
 
-        //sharedViewModel
-        var screenState by mutableStateOf(ProfileScreenState.LOGIN_STATE)
-        var inputPhoneState by mutableStateOf("")
-        var inputPasswordState by mutableStateOf("")
+    //sharedViewModel
+    var screenState by mutableStateOf(ProfileScreenState.LOGIN_STATE)
+    var inputPhoneState by mutableStateOf("")
+    var inputPasswordState by mutableStateOf("")
+    var loadingState by mutableStateOf(false)
 
 
     val loginResponse = MutableStateFlow<NetworkResult<LoginResponse>>(NetworkResult.Loading())
 
     fun login() {
         viewModelScope.launch {
+            loadingState = true
             val loginRequest = LoginRequest(inputPhoneState, inputPasswordState)
             loginResponse.emit(repository.login(loginRequest))
         }
