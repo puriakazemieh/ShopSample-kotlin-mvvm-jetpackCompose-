@@ -37,13 +37,15 @@ import com.kazemieh.www.shop.ui.theme.darkText
 import com.kazemieh.www.shop.ui.theme.selectedBottomBar
 import com.kazemieh.www.shop.ui.theme.spacing
 import com.kazemieh.www.shop.util.InputValidation.isValidPassword
+import com.kazemieh.www.shop.viewmodel.DataStoreViewModel
 import com.kazemieh.www.shop.viewmodel.ProfileViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun RegisterScreen(
-    profileViewModel: ProfileViewModel = hiltViewModel()
+    profileViewModel: ProfileViewModel = hiltViewModel(),
+    dataStoreViewModel: DataStoreViewModel= hiltViewModel()
 ) {
 
     val context = LocalContext.current
@@ -56,8 +58,13 @@ fun RegisterScreen(
             when (it) {
                 is NetworkResult.Success -> {
                     it.data?.let {
-                        if (it.token.isNotEmpty())
+                        if (it.token.isNotEmpty()){
                             profileViewModel.screenState = ProfileScreenState.PROFILE_STATE
+                            dataStoreViewModel.saveUserToken(it.token)
+                            dataStoreViewModel.saveUserId(it.id)
+                            dataStoreViewModel.saveUserPhone(it.phone)
+                            dataStoreViewModel.saveUserPassword(profileViewModel.inputPasswordState)
+                        }
                     }
 
                     Toast.makeText(
