@@ -33,7 +33,9 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.kazemieh.www.shop.R
+import com.kazemieh.www.shop.ui.theme.cardBackground
 import com.kazemieh.www.shop.ui.theme.darkText
+import com.kazemieh.www.shop.ui.theme.myBackground
 import com.kazemieh.www.shop.ui.theme.searchBarBg
 import com.kazemieh.www.shop.ui.theme.selectedBottomBar
 import com.kazemieh.www.shop.ui.theme.semiDarkText
@@ -71,7 +73,7 @@ fun LoginScreen(
                                 MaterialTheme.spacing.small
                             )
                             .size(MaterialTheme.spacing.semiLarge),
-                        tint = MaterialTheme.colorScheme.selectedBottomBar
+                        tint = MaterialTheme.colorScheme.myBackground
                     )
                 }
                 IconButton(onClick = {}) {
@@ -80,7 +82,7 @@ fun LoginScreen(
                         contentDescription = "Close",
                         modifier = Modifier
                             .padding(MaterialTheme.spacing.small),
-                        tint = MaterialTheme.colorScheme.selectedBottomBar
+                        tint = MaterialTheme.colorScheme.myBackground
                     )
                 }
             }
