@@ -1,5 +1,6 @@
 package com.kazemieh.www.shop.ui.screens.basket
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,15 +21,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.data.model.basket.CartItem
 import com.kazemieh.www.shop.data.model.basket.CartStatus
 import com.kazemieh.www.shop.ui.theme.darkText
 import com.kazemieh.www.shop.ui.theme.spacing
+import com.kazemieh.www.shop.util.Constants
+import com.kazemieh.www.shop.util.Constants.USER_TOKEN
 import com.kazemieh.www.shop.viewmodel.BasketViewModel
 
 @Composable
 fun NextShoppingList(
+    navController: NavController,
     viewModel: BasketViewModel = hiltViewModel()
 ) {
     val nextCartItemsState: BasketScreenState<List<CartItem>> by viewModel.nextCartItems.collectAsState(
@@ -52,6 +57,13 @@ fun NextShoppingList(
             .wrapContentHeight()
             .padding(bottom = 80.dp)
     ) {
+
+        Log.d("TAG", "NextShoppingList: $USER_TOKEN")
+        item {
+            if (USER_TOKEN == "null") {
+                LoginOrRegisterSection(navController)
+            }
+        }
 
         when(nextCartItemsState){
             is BasketScreenState.Loading->{

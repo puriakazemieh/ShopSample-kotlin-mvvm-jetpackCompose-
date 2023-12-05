@@ -88,9 +88,13 @@
     <string name="contact_us">Contact us</string>
     <string name="my_orders">My Orders</string>
 
-    <string name="unpaid">در انتظار پرداخت</string>
-    <string name="processing">در حال پردازش</string>
-    <string name="returned">مرجوع شده</string>
+    <string name="unpaid">Pending payment</string>
+    <string name="processing">Processing</string>
+    <string name="returned">Returned</string>
     <string name="canceled">لغو شده</string>
-    <string name="delivered">تحویل شده</string>
+    <string name="delivered">Delivered</string>
+
+    <string name="login_or_register">login or register</string>
+    <string name="login_or_register_msg">Please log in for a better shopping experience and to check the shipping method.</string>
+
 </resources>

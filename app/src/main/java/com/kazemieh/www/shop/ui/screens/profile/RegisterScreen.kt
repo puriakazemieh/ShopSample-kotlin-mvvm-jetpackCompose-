@@ -37,6 +37,7 @@ import com.kazemieh.www.shop.ui.theme.darkText
 import com.kazemieh.www.shop.ui.theme.selectedBottomBar
 import com.kazemieh.www.shop.ui.theme.spacing
 import com.kazemieh.www.shop.util.Constants.USER_PHONE
+import com.kazemieh.www.shop.util.Constants.USER_TOKEN
 import com.kazemieh.www.shop.util.InputValidation.isValidPassword
 import com.kazemieh.www.shop.viewmodel.DataStoreViewModel
 import com.kazemieh.www.shop.viewmodel.ProfileViewModel
@@ -65,6 +66,7 @@ fun RegisterScreen(
                             dataStoreViewModel.saveUserId(it.id)
                             dataStoreViewModel.saveUserPhone(it.phone)
                             USER_PHONE= it.phone
+                            USER_TOKEN= it.token
                             dataStoreViewModel.saveUserPassword(profileViewModel.inputPasswordState)
                         }
                     }

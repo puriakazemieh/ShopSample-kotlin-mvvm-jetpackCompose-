@@ -24,11 +24,17 @@ import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.ui.theme.darkText
 import com.kazemieh.www.shop.ui.theme.semiDarkText
 import com.kazemieh.www.shop.ui.theme.spacing
+import com.kazemieh.www.shop.util.Constants
 
 
 @Composable
 fun EmptyNextBasketShopping() {
 
+
+    var verticalAlignmentLine :Arrangement.Vertical = Arrangement.Center
+    if (Constants.USER_TOKEN == "null") {
+        verticalAlignmentLine = Arrangement.Top
+    }
 
     val config = LocalConfiguration.current
 
@@ -38,7 +44,7 @@ fun EmptyNextBasketShopping() {
             .fillMaxWidth()
             .padding(vertical = MaterialTheme.spacing.small),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = verticalAlignmentLine
     ) {
         Image(
             painter = painterResource(id = R.drawable.empty_next_chart),
