@@ -11,13 +11,14 @@ import com.kazemieh.www.shop.ui.screens.category.CategoryScreen
 import com.kazemieh.www.shop.ui.screens.home.HomeScreen
 import com.kazemieh.www.shop.ui.screens.profile.ProfileScreen
 import com.kazemieh.www.shop.ui.screens.SplashScreen
+import com.kazemieh.www.shop.ui.screens.checkout.CheckoutScreen
 import com.kazemieh.www.shop.ui.screens.home.WebPageScreen
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Profile.route
+        startDestination = Screen.Basket.route
     ) {
 
         composable(route = Screen.Splash.route) {
@@ -52,6 +53,10 @@ fun SetupNavGraph(navController: NavHostController) {
             url?.let {
                 WebPageScreen(navController = navController, url = it)
             }
+        }
+
+        composable(route = Screen.Checkout.route) {
+            CheckoutScreen(navController = navController)
         }
 
     }

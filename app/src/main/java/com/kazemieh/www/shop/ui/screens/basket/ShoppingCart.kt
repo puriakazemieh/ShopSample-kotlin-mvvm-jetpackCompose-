@@ -27,10 +27,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.data.model.basket.CartItem
 import com.kazemieh.www.shop.data.model.basket.CartStatus
+import com.kazemieh.www.shop.navigation.Screen
 import com.kazemieh.www.shop.ui.theme.darkText
 import com.kazemieh.www.shop.ui.theme.spacing
 import com.kazemieh.www.shop.util.Constants.USER_TOKEN
@@ -108,7 +108,7 @@ fun ShoppingCart(
                         item { EmptyBasketShopping() }
                         item { SuggestListSection() }
                     } else {
-                        isCartEmpty = true
+                        isCartEmpty = false
                         items((currentCartItemsState as BasketScreenState.Success<List<CartItem>>).data) {
                             CartItemCard(it, CartStatus.CURRENT_CART)
                         }
@@ -133,7 +133,13 @@ fun ShoppingCart(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                ByProcessContinue(cartDetails.value.payablePrice)
+                ByProcessContinue(cartDetails.value.payablePrice) {
+                    if (USER_TOKEN == "null") {
+                        navController.navigate(Screen.Profile.route)
+                    } else {
+                        navController.navigate(Screen.Checkout.route)
+                    }
+                }
             }
 
     }

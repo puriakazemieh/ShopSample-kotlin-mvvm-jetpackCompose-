@@ -32,7 +32,8 @@ import com.kazemieh.www.shop.util.DigitHelper
 
 @Composable
 fun ByProcessContinue(
-    price: Long
+    price: Long,
+    onClick: () -> Unit
 ) {
 
     Card(
@@ -54,7 +55,7 @@ fun ByProcessContinue(
         ) {
 
             Button(
-                onClick = { },
+                onClick = { onClick() },
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.LightRed),
                 shape = MaterialTheme.roundedShape.small
             ) {
