@@ -37,8 +37,10 @@ import com.kazemieh.www.shop.util.DigitHelper.digitByLocateAndSeparator
 
 
 @Composable
-fun CartPriceDetailSection(cartDetails: CartDetails) {
+fun CartPriceDetailSection(cartDetails: CartDetails, shippingCost: Int = 0) {
 
+    var title = stringResource(id = R.string.basket_summary)
+    if (shippingCost > 0) title = stringResource(id = R.string.cost_details)
 
     Column(
         modifier = Modifier.padding(
@@ -55,7 +57,7 @@ fun CartPriceDetailSection(cartDetails: CartDetails) {
         ) {
 
             Text(
-                text = stringResource(id = R.string.basket_summary),
+                text = title,
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(start = MaterialTheme.spacing.small)
             )
@@ -73,7 +75,8 @@ fun CartPriceDetailSection(cartDetails: CartDetails) {
             title = stringResource(id = R.string.goods_price),
             price = digitByLocateAndSeparator(cartDetails.totalPrice.toString())
         )
-        val discountPercent=(1-cartDetails.payablePrice.toDouble()/ cartDetails.totalPrice.toDouble()) * 100
+        val discountPercent =
+            (1 - cartDetails.payablePrice.toDouble() / cartDetails.totalPrice.toDouble()) * 100
         RowPrice(
             title = stringResource(id = R.string.goods_discount),
             price = digitByLocateAndSeparator(cartDetails.totalDiscount.toString()),
@@ -86,13 +89,42 @@ fun CartPriceDetailSection(cartDetails: CartDetails) {
         )
 
 
-        Text(
-            text = stringResource(id = R.string.shipping_cost_alert),
-            modifier = Modifier.padding(
-                start = MaterialTheme.spacing.biggerMedium,
-                top = MaterialTheme.spacing.medium
+        if (shippingCost > 0) {
+            Divider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = MaterialTheme.spacing.medium)
+                    .height(1.dp)
+                    .alpha(0.4f),
+                color = Color.LightGray
             )
-        )
+            RowPrice(
+                title = stringResource(id = R.string.delivery_cost),
+                price = digitByLocateAndSeparator(shippingCost.toString())
+            )
+
+            Text(
+                text = stringResource(id = R.string.shipping_cost_last_alert),
+                modifier = Modifier.padding(
+                    start = MaterialTheme.spacing.biggerMedium,
+                    top = MaterialTheme.spacing.medium
+                )
+            )
+
+            RowPrice(
+                title = stringResource(id = R.string.final_price),
+                price = digitByLocateAndSeparator((cartDetails.payablePrice + shippingCost).toString())
+            )
+        } else {
+
+            Text(
+                text = stringResource(id = R.string.shipping_cost_alert),
+                modifier = Modifier.padding(
+                    start = MaterialTheme.spacing.biggerMedium,
+                    top = MaterialTheme.spacing.medium
+                )
+            )
+        }
 
         Divider(
             modifier = Modifier

@@ -18,7 +18,8 @@ object Constants {
     const val DATABASE_NAME = "shop_database"
 
     const val NETWORK_TIME_OUT_SECOND = 60L
-    const val BASE_URL = "https://dig-za0p.onrender.com"
+//    const val BASE_URL = "https://dig-za0p.onrender.com"
+    const val BASE_URL = "https://truelearn-digikala.iran.liara.run"
     const val API_KEY = BuildConfig.X_API_KEY
 
     const val KEY = BuildConfig.KEY

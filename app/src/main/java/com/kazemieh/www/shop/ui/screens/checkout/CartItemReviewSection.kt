@@ -39,7 +39,7 @@ import com.kazemieh.www.shop.util.DigitHelper.digitByLocate
 
 @Composable
 fun CartItemReviewSection(
-    shippingCost: String,
+    shippingCost: Int,
     cartDetail: CartDetails,
     currentCartItems: List<CartItem>
 ) {

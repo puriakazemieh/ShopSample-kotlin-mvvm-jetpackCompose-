@@ -133,7 +133,7 @@ fun ShoppingCart(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                ByProcessContinue(cartDetails.value.payablePrice) {
+                BuyProcessContinue(cartDetails.value.payablePrice) {
                     if (USER_TOKEN == "null") {
                         navController.navigate(Screen.Profile.route)
                     } else {

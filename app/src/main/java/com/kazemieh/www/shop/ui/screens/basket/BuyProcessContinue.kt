@@ -31,10 +31,14 @@ import com.kazemieh.www.shop.ui.theme.spacing
 import com.kazemieh.www.shop.util.DigitHelper
 
 @Composable
-fun ByProcessContinue(
+fun BuyProcessContinue(
     price: Long,
+    shippingCost: Int = 0,
     onClick: () -> Unit
 ) {
+
+    var title = stringResource(id = R.string.goods_total_price)
+    if (shippingCost > 0) title = stringResource(id = R.string.final_price)
 
     Card(
         shape = MaterialTheme.roundedShape.small,
@@ -71,14 +75,14 @@ fun ByProcessContinue(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = stringResource(id = R.string.goods_total_price),
+                    text = title,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.semiDarkText,
                     modifier = Modifier.padding(start = MaterialTheme.spacing.small)
                 )
                 Row {
                     Text(
-                        text = DigitHelper.digitByLocateAndSeparator(price.toString()),
+                        text = DigitHelper.digitByLocateAndSeparator((price + shippingCost).toString()),
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.SemiBold
                     )
