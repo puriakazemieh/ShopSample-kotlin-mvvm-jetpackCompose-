@@ -87,11 +87,15 @@
     <string name="club">Digi Club</string>
     <string name="contact_us">Contact us</string>
     <string name="my_orders">My Orders</string>
+    <string name="fav_list">Favorite list</string>
+    <string name="my_comments">Criticism and comments</string>
+    <string name="addresses">Addresses</string>
+    <string name="profile_data">User account information</string>
+    <string name="canceled">Canceled</string>
 
     <string name="unpaid">Pending payment</string>
     <string name="processing">Processing</string>
     <string name="returned">Returned</string>
-    <string name="canceled">لغو شده</string>
     <string name="delivered">Delivered</string>
 
     <string name="login_or_register">login or register</string>
