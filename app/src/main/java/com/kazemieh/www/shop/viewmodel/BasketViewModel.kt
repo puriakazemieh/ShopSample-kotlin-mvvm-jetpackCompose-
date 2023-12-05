@@ -33,6 +33,9 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
     val currentCartItems: StateFlow<BasketScreenState<List<CartItem>>> = _currentCartItems
 
 
+    val ourCartItems: MutableStateFlow<List<CartItem>> = MutableStateFlow(emptyList())
+
+
     private val _nextCartItems: MutableStateFlow<BasketScreenState<List<CartItem>>> =
         MutableStateFlow(BasketScreenState.Loading)
     val nextCartItems: StateFlow<BasketScreenState<List<CartItem>>> = _nextCartItems
@@ -46,7 +49,7 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
         viewModelScope.launch {
             repository.currentCartItems.collectLatest {
                 _currentCartItems.emit(BasketScreenState.Success(it))
-
+                ourCartItems.emit(it)
             }
         }
         viewModelScope.launch {
@@ -102,7 +105,7 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
         var payablePrice = 0L
         items.forEach {
             totalPrice += it.price * it.count
-            payablePrice += applyDiscount(it.price, it.discountPercent)* it.count
+            payablePrice += applyDiscount(it.price, it.discountPercent) * it.count
             totalCount += it.count
         }
         val totalDiscount: Long = totalPrice - payablePrice
