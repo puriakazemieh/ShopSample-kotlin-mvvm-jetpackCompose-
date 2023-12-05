@@ -322,11 +322,32 @@ fun MyOrdersItem(painter: Painter, text: String) {
     }
 }
 
+
 @Composable
-fun ProfileMenuSection() {
+private fun ProfileMenuSection(){
     MenuRowItem(
-        painter = painterResource(id = R.drawable.digiclub2),
-        text ="test",
+        painter = painterResource(id = R.drawable.digi_plus_icon),
+        text = stringResource(id = R.string.digi_plus),
         isHaveDivider = true
+    )
+    MenuRowItem(
+        painter = painterResource(id = R.drawable.digi_fav_icon),
+        text = stringResource(id = R.string.fav_list),
+        isHaveDivider = true
+    )
+    MenuRowItem(
+        painter = painterResource(id = R.drawable.digi_comments_icon),
+        text = stringResource(id = R.string.my_comments),
+        isHaveDivider = true
+    )
+    MenuRowItem(
+        painter = painterResource(id = R.drawable.digi_adresses_icon),
+        text = stringResource(id = R.string.addresses),
+        isHaveDivider = true
+    )
+    MenuRowItem(
+        painter = painterResource(id = R.drawable.digi_profile_icon),
+        text = stringResource(id = R.string.profile_data),
+        isHaveDivider = false
     )
 }

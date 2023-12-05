@@ -37,6 +37,8 @@ fun Checkout(navController: NavController) {
                     color = Color.LightGray
                 )
             }
+
+            item { CartAddressSection(navController) }
         }
     }
 }

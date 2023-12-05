@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
@@ -40,13 +41,18 @@ fun MenuRowItem(painter: Painter, isHaveDivider: Boolean, text: String) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(painter = painter, contentDescription = null)
+            Image(
+                painter = painter, contentDescription = null,
+                modifier = Modifier
+                    .size(36.dp)
+                    .padding(MaterialTheme.spacing.small)
+            )
         }
         Column(
             modifier = Modifier
                 .fillMaxHeight()
                 .weight(0.9f)
-                .padding(start = 8 .dp),
+                .padding(start = 8.dp),
             verticalArrangement = Arrangement.Center
         ) {
             Row(
@@ -61,6 +67,7 @@ fun MenuRowItem(painter: Painter, isHaveDivider: Boolean, text: String) {
                 Icon(
                     imageVector = Icons.Filled.KeyboardArrowLeft,
                     contentDescription = "",
+                    modifier = Modifier.size(24.dp),
                     tint = MaterialTheme.colorScheme.selectedBottomBar
                 )
             }

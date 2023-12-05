@@ -18,7 +18,7 @@ import com.kazemieh.www.shop.ui.screens.home.WebPageScreen
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Checkout.route
+        startDestination = Screen.Profile.route
     ) {
 
         composable(route = Screen.Splash.route) {
