@@ -13,6 +13,8 @@ object Constants {
     var USER_ID = "USER_ID"
     var USER_PHONE = "USER_PHONE"
     var USER_PASSWORD = "USER_PASSWORD"
+    const val ZARINPAL_MERCHANT_ID = ""
+
 
     const val SHOPPING_CART_TABLE = "shopping_cart"
     const val DATABASE_NAME = "shop_database"

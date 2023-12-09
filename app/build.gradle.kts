@@ -118,4 +118,7 @@ dependencies {
     // system ui controller
     implementation(libs.accompanist.systemuicontroller)
 
+    //zarinpal
+    implementation (libs.payment.provider.ktx)
+
 }
