@@ -17,6 +17,7 @@ import androidx.compose.material3.SheetValue
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,9 +32,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.kazemieh.www.shop.data.model.chekcout.OrderDetail
 import com.kazemieh.www.shop.data.remote.NetworkResult
 import com.kazemieh.www.shop.ui.screens.basket.BuyProcessContinue
 import com.kazemieh.www.shop.ui.screens.basket.CartPriceDetailSection
+import com.kazemieh.www.shop.util.Constants.USER_TOKEN
 import com.kazemieh.www.shop.util.navigationBarHeight
 import com.kazemieh.www.shop.viewmodel.BasketViewModel
 import com.kazemieh.www.shop.viewmodel.CheckoutViewModel
@@ -57,13 +60,20 @@ fun Checkout(
     val cartDetail by basketViewModel.cartDetail.collectAsState()
     val currentCartItems by basketViewModel.ourCartItems.collectAsState()
 
-    var shippingCost by remember {
-        mutableStateOf(0)
-    }
-    var loading by remember {
-        mutableStateOf(false)
-    }
+    var shippingCost by remember { mutableStateOf(0) }
+    var loading by remember { mutableStateOf(false) }
+    var address by remember { mutableStateOf("") }
+    var addressName by remember { mutableStateOf("") }
+    var addressPhone by remember { mutableStateOf("") }
+
+
     // todo    این api چندین بار کال میشه که باید جلوش گرفته بشه و اینکه با اون url قدیمی نمیشه کار کرد چون ارور برمی گردونه
+
+    LaunchedEffect(key1 = true) {
+        if (address.isNotBlank())
+            checkoutViewModel.getShippingCost(address)
+        else checkoutViewModel.getShippingCost("")
+    }
 
     val shippingCostResult by checkoutViewModel.shippingCost.collectAsState()
     when (shippingCostResult) {
@@ -82,6 +92,23 @@ fun Checkout(
         }
     }
 
+    var orderId by remember { mutableStateOf("") }
+    val orderIdResult by checkoutViewModel.orderResponse.collectAsState()
+    when (orderIdResult) {
+        is NetworkResult.Success -> {
+            orderId = orderIdResult.data ?: ""
+//            loading = false
+        }
+
+        is NetworkResult.Error -> {
+//            loading = false
+
+        }
+
+        is NetworkResult.Loading -> {
+//            loading = true
+        }
+    }
 
     val scope = rememberCoroutineScope()
     var showBottomSheet by remember { mutableStateOf(false) }
@@ -96,79 +123,91 @@ fun Checkout(
 //            DeliveryTimeBottomSheet()
 //        }) {
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        CheckoutTopBarSection(navController)
+        Box(
+            Modifier.fillMaxSize(),
+            contentAlignment = Alignment.TopCenter
         ) {
-            CheckoutTopBarSection(navController)
-            Box(
-                Modifier.fillMaxSize(),
-                contentAlignment = Alignment.TopCenter
-            ) {
-                LazyColumn {
-                    item {
-                        CartAddressSection(navController) {
-                            if (it.isNotEmpty())
-                                checkoutViewModel.getShippingCost(it[0].address)
-                            else checkoutViewModel.getShippingCost("")
+            LazyColumn {
+                item {
+                    CartAddressSection(navController) {
+                        if (it.isNotEmpty()) {
+                            address = it[0].address
+                            addressName = it[0].name
+                            addressPhone = it[0].phone
                         }
                     }
-                    item {
-                        Divider(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(4.dp)
-                                .alpha(0.4f),
-                            color = Color.LightGray
-                        )
-                    }
-                    item {
-                        CartItemReviewSection(cartDetail, currentCartItems) {
-                            showBottomSheet = !showBottomSheet
+                }
+                item {
+                    Divider(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(4.dp)
+                            .alpha(0.4f),
+                        color = Color.LightGray
+                    )
+                }
+                item {
+                    CartItemReviewSection(cartDetail, currentCartItems) {
+                        showBottomSheet = !showBottomSheet
 //                            scope.launch {
 //                                scaffoldState.bottomSheetState.expand()
 //                            }
-                        }
-                    }
-                    item { CartInfoSection() }
-                    item {
-                        CartPriceDetailSection(
-                            cartDetails = cartDetail,
-                            shippingCost = shippingCost
-                        )
                     }
                 }
-
-                // Sheet content
-                if (showBottomSheet) {
-                    val windowInsets =  WindowInsets(bottom = LocalContext.current.navigationBarHeight())
-                    ModalBottomSheet(
-                        onDismissRequest = { showBottomSheet = false },
-                        sheetState = sheetState,
-                        content = { DeliveryTimeBottomSheet() },
-                          dragHandle={},
-                        windowInsets = windowInsets
+                item { CartInfoSection() }
+                item {
+                    CartPriceDetailSection(
+                        cartDetails = cartDetail,
+                        shippingCost = shippingCost
                     )
                 }
-                if (!loading) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.BottomCenter),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        BuyProcessContinue(cartDetail.payablePrice, shippingCost) {
-
-                        }
-
-                    }
-                }
-
             }
 
+            // Sheet content
+            if (showBottomSheet) {
+                val windowInsets = WindowInsets(bottom = LocalContext.current.navigationBarHeight())
+                ModalBottomSheet(
+                    onDismissRequest = { showBottomSheet = false },
+                    sheetState = sheetState,
+                    content = { DeliveryTimeBottomSheet() },
+                    dragHandle = {},
+                    windowInsets = windowInsets
+                )
+            }
+            if (!loading) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.BottomCenter),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    BuyProcessContinue(cartDetail.payablePrice, shippingCost) {
+                        checkoutViewModel.addNewOrder(
+                            OrderDetail(
+                                orderAddress = address,
+                                orderProducts = currentCartItems,
+                                orderTotalDiscount = cartDetail.totalDiscount,
+                                orderTotalPrice = cartDetail.payablePrice + shippingCost,
+                                orderUserName = addressName,
+                                orderUserPhone = addressPhone,
+                                token = USER_TOKEN
+                            )
+                        )
+                    }
+
+                }
+            }
 
         }
+
+
+    }
 //    }
 
 }

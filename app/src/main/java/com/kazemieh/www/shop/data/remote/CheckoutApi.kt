@@ -1,6 +1,7 @@
 package com.kazemieh.www.shop.data.remote
 
 import com.kazemieh.www.shop.data.model.ResponseResult
+import com.kazemieh.www.shop.data.model.chekcout.OrderDetail
 import com.kazemieh.www.shop.data.model.profile.LoginRequest
 import com.kazemieh.www.shop.data.model.profile.LoginResponse
 import retrofit2.Response
@@ -15,5 +16,11 @@ interface CheckoutApi {
     suspend fun getShippingCost(
         @Query("address") address: String
     ) : Response<ResponseResult<Int>>
+
+
+    @POST("/api/v1/setNewOrder")
+    suspend fun setNewOrder(
+        @Body orderRequest: OrderDetail
+    ): Response<ResponseResult<String>>
 
 }

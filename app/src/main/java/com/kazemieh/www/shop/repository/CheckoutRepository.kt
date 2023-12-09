@@ -1,5 +1,6 @@
 package com.kazemieh.www.shop.repository
 
+import com.kazemieh.www.shop.data.model.chekcout.OrderDetail
 import com.kazemieh.www.shop.data.remote.BaseApiResponse
 import com.kazemieh.www.shop.data.remote.CategoryApi
 import com.kazemieh.www.shop.data.remote.CheckoutApi
@@ -14,6 +15,11 @@ class CheckoutRepository @Inject constructor(private val api: CheckoutApi) : Bas
             api.getShippingCost(address)
         }
 
+
+    suspend fun setNewOrder(cartOrderDetail: OrderDetail): NetworkResult<String> =
+        safeApiCall {
+            api.setNewOrder(cartOrderDetail)
+        }
 
 
 }
