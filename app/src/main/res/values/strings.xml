@@ -114,5 +114,7 @@
     <string name="delivery_cost">Shipping cost</string>
     <string name="final_price">Payable amount</string>
     <string name="cost_details">Cost details</string>
+    <string name="pishtaz_post">Posted by Pishtaz Post</string>
+    <string name="delivery_delay">3 to 5 working days</string>
 
 </resources>

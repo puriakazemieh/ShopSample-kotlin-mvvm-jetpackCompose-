@@ -39,9 +39,9 @@ import com.kazemieh.www.shop.util.DigitHelper.digitByLocate
 
 @Composable
 fun CartItemReviewSection(
-    shippingCost: Int,
     cartDetail: CartDetails,
-    currentCartItems: List<CartItem>
+    currentCartItems: List<CartItem>,
+    onDeliveryTimeClick: () -> Unit
 ) {
 
     Column(
@@ -63,7 +63,7 @@ fun CartItemReviewSection(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding( MaterialTheme.spacing.small                ),
+                .padding(MaterialTheme.spacing.small),
             shape = MaterialTheme.roundedShape.small,
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.cardBackground),
             elevation = CardDefaults.cardElevation(LocalElevation.current.veryExtraSmall)
@@ -72,18 +72,16 @@ fun CartItemReviewSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
-                        horizontal = MaterialTheme.spacing.semiMedium
+                        horizontal = MaterialTheme.spacing.semiMedium,
+                        vertical = MaterialTheme.spacing.small
                     )
             ) {
-
 
                 Text(
                     text = digitByLocate(stringResource(id = R.string.delivery_1)),
                     textAlign = TextAlign.Start,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .padding(top = MaterialTheme.spacing.medium)
                 )
 
                 Row(
@@ -125,24 +123,35 @@ fun CartItemReviewSection(
                     horizontalArrangement = Arrangement.Start,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                  items(currentCartItems){
-                      CheckoutProductCard(it)
-                  }
+                    items(currentCartItems) {
+                        CheckoutProductCard(it)
+                    }
                 }
+                Row {
+                    Text(
+                        text = stringResource(id = R.string.ready_to_send),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = Color.Gray,
+                        modifier = Modifier
+                            .padding(vertical = MaterialTheme.spacing.medium),
+                    )
 
-                Text(
-                    text = stringResource(id = R.string.ready_to_send),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = Color.Gray,
-                    modifier = Modifier
-                        .align(Alignment.Start)
-                        .padding(vertical = MaterialTheme.spacing.medium),
-                )
-
+                    Text(
+                        text = " : ${stringResource(id = R.string.pishtaz_post)} (${
+                            stringResource(
+                                id = R.string.delivery_delay
+                            )
+                        })",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = Color.Gray,
+                        modifier = Modifier
+                            .padding(vertical = MaterialTheme.spacing.medium),
+                    )
+                }
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = MaterialTheme.spacing.medium),
+                        .clickable { onDeliveryTimeClick() }
+                        .padding(MaterialTheme.spacing.small),
                     horizontalArrangement = Arrangement.Start,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -157,12 +166,9 @@ fun CartItemReviewSection(
                         contentDescription = "",
                         tint = MaterialTheme.colorScheme.DarkCyan,
                         modifier = Modifier
-                            .padding(horizontal = MaterialTheme.spacing.small)
+                            .padding(start = MaterialTheme.spacing.small)
                             .size(12.dp)
                             .align(Alignment.CenterVertically)
-                            .clickable {
-
-                            }
                     )
                 }
 

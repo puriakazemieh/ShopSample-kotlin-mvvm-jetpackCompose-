@@ -117,6 +117,8 @@
     <string name="delivery_cost">هزینه ارسال</string>
     <string name="final_price">مبلغ قابل پرداخت</string>
     <string name="cost_details">جزئیات قیمت</string>
+    <string name="pishtaz_post">ارسال توسط پست پیشتاز</string>
+    <string name="delivery_delay">3 تا 5 روز کاری</string>
 
 
 </resources>

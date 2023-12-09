@@ -83,7 +83,7 @@ fun CartAddressSection(
 
 
     if (loading) {
-        OurLoading(height = 130.dp, isDark = true)
+        OurLoading(height = 135.dp, isDark = true)
     } else {
         Row(
             modifier = Modifier

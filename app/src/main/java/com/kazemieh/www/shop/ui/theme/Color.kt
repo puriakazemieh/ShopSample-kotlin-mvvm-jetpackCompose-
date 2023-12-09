@@ -91,3 +91,8 @@ val ColorScheme.CursorColor : Color
     @Composable
     get() = Color(0xFF018577)
 
+
+val ColorScheme.Oranges: Color
+    @Composable
+    get() = Color(0xFFFF5722)
+
