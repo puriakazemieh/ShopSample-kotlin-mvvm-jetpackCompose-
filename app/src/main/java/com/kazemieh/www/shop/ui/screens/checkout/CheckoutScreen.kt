@@ -34,12 +34,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.kazemieh.www.shop.data.model.chekcout.OrderDetail
 import com.kazemieh.www.shop.data.remote.NetworkResult
+import com.kazemieh.www.shop.navigation.Screen
 import com.kazemieh.www.shop.ui.screens.basket.BuyProcessContinue
 import com.kazemieh.www.shop.ui.screens.basket.CartPriceDetailSection
 import com.kazemieh.www.shop.util.Constants.USER_TOKEN
 import com.kazemieh.www.shop.util.navigationBarHeight
 import com.kazemieh.www.shop.viewmodel.BasketViewModel
 import com.kazemieh.www.shop.viewmodel.CheckoutViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 
 
 @Composable
@@ -93,22 +96,29 @@ fun Checkout(
     }
 
     var orderId by remember { mutableStateOf("") }
-    val orderIdResult by checkoutViewModel.orderResponse.collectAsState()
-    when (orderIdResult) {
-        is NetworkResult.Success -> {
-            orderId = orderIdResult.data ?: ""
-//            loading = false
-        }
 
-        is NetworkResult.Error -> {
-//            loading = false
+//    val orderIdResult by checkoutViewModel.orderResponse.collectAsState()
+    LaunchedEffect(key1 = Dispatchers.Main) {
+        checkoutViewModel.orderResponse.collectLatest { orderIdResult ->
 
-        }
+            when (orderIdResult) {
+                is NetworkResult.Success -> {
+                    orderId = orderIdResult.data ?: ""
+                    navController.navigate(
+                        Screen.ConfirmPurchase.withArgs(
+                            orderId,
+                            cartDetail.payablePrice + shippingCost
+                        )
+                    )
+                }
 
-        is NetworkResult.Loading -> {
-//            loading = true
+                is NetworkResult.Error -> {}
+
+                is NetworkResult.Loading -> {}
+            }
         }
     }
+
 
     val scope = rememberCoroutineScope()
     var showBottomSheet by remember { mutableStateOf(false) }

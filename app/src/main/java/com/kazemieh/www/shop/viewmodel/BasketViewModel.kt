@@ -84,6 +84,12 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
         }
     }
 
+    fun deleteAllItems() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllItems()
+        }
+    }
+
     fun changeCountCartItem(id: String, newCount: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.changeCountCartItem(id, newCount)

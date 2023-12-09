@@ -12,6 +12,7 @@ import com.kazemieh.www.shop.ui.screens.home.HomeScreen
 import com.kazemieh.www.shop.ui.screens.profile.ProfileScreen
 import com.kazemieh.www.shop.ui.screens.SplashScreen
 import com.kazemieh.www.shop.ui.screens.checkout.CheckoutScreen
+import com.kazemieh.www.shop.ui.screens.checkout.ConfirmPurchaseScreen
 import com.kazemieh.www.shop.ui.screens.home.WebPageScreen
 
 @Composable
@@ -57,6 +58,33 @@ fun SetupNavGraph(navController: NavHostController) {
 
         composable(route = Screen.Checkout.route) {
             CheckoutScreen(navController = navController)
+        }
+
+        composable(
+            route = Screen.ConfirmPurchase.route + "/{orderId}/{orderPrice}",
+            arguments = listOf(
+                navArgument("orderId") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                },
+                navArgument("orderPrice") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                }
+            )
+        ) {
+
+            it.arguments?.getString("orderId")?.let { orderId ->
+                it.arguments?.getString("orderPrice")?.let { orderPrice ->
+                    ConfirmPurchaseScreen(
+                        navController = navController,
+                        orderId = orderId,
+                        orderPrice = orderPrice
+                    )
+                }
+            }
         }
 
     }

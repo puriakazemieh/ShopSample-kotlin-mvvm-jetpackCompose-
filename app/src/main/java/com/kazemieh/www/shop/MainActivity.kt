@@ -20,7 +20,6 @@ import com.kazemieh.www.shop.ui.theme.ShopTheme
 import com.kazemieh.www.shop.util.Constants.ENGLISH_LANG
 import com.kazemieh.www.shop.util.Constants.USER_LANGUAGE
 import com.kazemieh.www.shop.util.LocaleUtils
-import com.kazemieh.www.shop.util.ZarinpalPurchase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,9 +36,6 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             navController = rememberNavController()
-//            ZarinpalPurchase.purchase(this, 1000, "test") {
-//                Log.d("949494", " it= $it ")
-//            }
 
             ChangeStatusBarColor(navController = navController)
             ShopTheme {

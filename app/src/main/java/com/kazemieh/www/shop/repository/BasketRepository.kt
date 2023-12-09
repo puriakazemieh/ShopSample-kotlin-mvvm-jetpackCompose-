@@ -27,6 +27,8 @@ class BasketRepository @Inject constructor(
 
     suspend fun removeFromCart(item: CartItem) = dao.removeFromCart(item)
 
+    suspend fun deleteAllItems() = dao.deleteAllItems(CartStatus.CURRENT_CART)
+
     suspend fun changeCountCartItem(id: String, newCount: Int) =
         dao.changeCountCartItem(id, newCount)
 

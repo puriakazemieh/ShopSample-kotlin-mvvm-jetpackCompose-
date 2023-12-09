@@ -1,5 +1,6 @@
 package com.kazemieh.www.shop.repository
 
+import com.kazemieh.www.shop.data.model.chekcout.ConfirmPurchase
 import com.kazemieh.www.shop.data.model.chekcout.OrderDetail
 import com.kazemieh.www.shop.data.remote.BaseApiResponse
 import com.kazemieh.www.shop.data.remote.CategoryApi
@@ -19,6 +20,11 @@ class CheckoutRepository @Inject constructor(private val api: CheckoutApi) : Bas
     suspend fun setNewOrder(cartOrderDetail: OrderDetail): NetworkResult<String> =
         safeApiCall {
             api.setNewOrder(cartOrderDetail)
+        }
+
+    suspend fun confirmPurchase(confirmPurchase: ConfirmPurchase): NetworkResult<String> =
+        safeApiCall {
+            api.confirmPurchase(confirmPurchase)
         }
 
 

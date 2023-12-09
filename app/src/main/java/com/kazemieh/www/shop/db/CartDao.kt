@@ -22,6 +22,9 @@ interface CartDao {
     @Delete
     suspend fun removeFromCart(item: CartItem)
 
+    @Query("delete from shopping_cart where cartStatus=:cartStatus")
+    suspend fun deleteAllItems(cartStatus: CartStatus)
+
     @Query(" update shopping_cart set count=:newCount where itemId=:id")
     suspend fun changeCountCartItem(id: String, newCount: Int)
 
@@ -29,7 +32,7 @@ interface CartDao {
     suspend fun changeStatusCartItem(id: String, newCartStatus: CartStatus)
 
     @Query("select total(count) as count from shopping_cart where cartStatus=:status ")
-    fun getCartItemCount(status: CartStatus) :Flow<Int>
+    fun getCartItemCount(status: CartStatus): Flow<Int>
 
 
 }

@@ -1,6 +1,7 @@
 package com.kazemieh.www.shop.data.remote
 
 import com.kazemieh.www.shop.data.model.ResponseResult
+import com.kazemieh.www.shop.data.model.chekcout.ConfirmPurchase
 import com.kazemieh.www.shop.data.model.chekcout.OrderDetail
 import com.kazemieh.www.shop.data.model.profile.LoginRequest
 import com.kazemieh.www.shop.data.model.profile.LoginResponse
@@ -22,5 +23,11 @@ interface CheckoutApi {
     suspend fun setNewOrder(
         @Body orderRequest: OrderDetail
     ): Response<ResponseResult<String>>
+
+    @POST("/api/v1/confirmPurchase")
+    suspend fun confirmPurchase(
+        @Body confirmPurchase: ConfirmPurchase
+    ): Response<ResponseResult<String>>
+
 
 }

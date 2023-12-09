@@ -37,7 +37,7 @@ object ZarinpalPurchase {
             .build()
 
         val purchase = Purchase.newBuilder()
-            .asPaymentRequest(ZARINPAL_MERCHANT_ID, amount, "my url ", description).build()
+            .asPaymentRequest(ZARINPAL_MERCHANT_ID, amount, "https://www.kazemieh.com/", description).build()
 
         client.launchBillingFlow(purchase, object : FutureCompletionListener<Receipt> {
             override fun onComplete(task: TaskResult<Receipt>) {
