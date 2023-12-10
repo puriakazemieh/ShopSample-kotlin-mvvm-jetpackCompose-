@@ -17,12 +17,12 @@ data class ProductDetail(
     val questionCount: Int? = null,
     val agreeCount: Int? = null,
     val agreePercent: Int? = null,
-    val imageSlider: List<Image>? = null,
+    val imageSlider: List<SliderImage>? = null,
     val colors: List<Color>? = null,
     val comments: List<Comment>? = null
 )
 
-data class Image(
+data class SliderImage(
     val _id: String,
     val image: String,
     val productId: String

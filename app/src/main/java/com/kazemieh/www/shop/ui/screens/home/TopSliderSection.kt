@@ -177,7 +177,7 @@ fun TopSliderSection(viewModel: HomeViewModel = hiltViewModel()) {
                     delay(6000)
                     var newPosition = pagerState.currentPage + 1
                     if (newPosition > sliderList.size - 1) newPosition = 0
-                    pagerState.scrollToPage(newPosition)
+                    pagerState.animateScrollToPage(newPosition)
                 }
 
             }

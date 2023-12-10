@@ -76,8 +76,6 @@ val ColorScheme.DarkCyan: Color
     @Composable
     get() = Color(0xFF0fabc6)
 
-
-
 val ColorScheme.LightCyan: Color
     @Composable
     get() = Color(0xFF17BFD3)
@@ -95,4 +93,13 @@ val ColorScheme.CursorColor : Color
 val ColorScheme.Oranges: Color
     @Composable
     get() = Color(0xFFFF5722)
+
+
+val ColorScheme.Gold : Color
+    @Composable
+    get() = Color(0xFFf9bc01)
+
+val ColorScheme.grayAlpha: Color
+    @Composable
+    get() = Color(0xFFc1c2c6)
 

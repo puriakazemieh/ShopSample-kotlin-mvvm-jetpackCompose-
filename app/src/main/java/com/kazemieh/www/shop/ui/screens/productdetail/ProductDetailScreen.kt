@@ -11,10 +11,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.kazemieh.www.shop.data.model.productdetail.ProductDetail
 import com.kazemieh.www.shop.data.remote.NetworkResult
+import com.kazemieh.www.shop.ui.component.OurLoading
 import com.kazemieh.www.shop.viewmodel.ProductDetailViewModel
 import kotlinx.coroutines.flow.collectLatest
 
@@ -59,15 +62,19 @@ fun ProductDetailScreen(
 
     }
 
-
-    Scaffold(
-        bottomBar = {
-            ProductDetailBottomBar(item = productDetailList, navController = navController)
-        }
-    ) {
-        LazyColumn() {
-            item {
-                Text(text = productId)
+    if (loading) {
+        val config = LocalConfiguration.current
+        OurLoading(height = config.screenHeightDp.dp, isDark = true)
+    } else {
+        Scaffold(
+            bottomBar = {
+                ProductDetailBottomBar(item = productDetailList, navController = navController)
+            }
+        ) {
+            LazyColumn() {
+                item { productDetailList.imageSlider?.let { it1 -> ProductTopSliderSection(it1) } }
+                item {ProductDetailHeaderSection(productDetailList)  }
+                item { Text(text = productId) }
             }
         }
     }
