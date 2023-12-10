@@ -2,6 +2,7 @@ package com.kazemieh.www.shop.ui.screens.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,9 +35,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.data.model.home.AmazingItem
+import com.kazemieh.www.shop.navigation.Screen
 import com.kazemieh.www.shop.ui.theme.DarkCyan
 import com.kazemieh.www.shop.ui.theme.DarkRed
 import com.kazemieh.www.shop.ui.theme.LightRed
@@ -50,7 +53,7 @@ import com.kazemieh.www.shop.util.DigitHelper.digitByLocate
 import com.kazemieh.www.shop.util.DigitHelper.digitByLocateAndSeparator
 
 @Composable
-fun AmazingOfferItem(amazingItem: AmazingItem) {
+fun AmazingOfferItem(amazingItem: AmazingItem, navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxHeight()
@@ -58,7 +61,12 @@ fun AmazingOfferItem(amazingItem: AmazingItem) {
             .padding(
                 vertical = MaterialTheme.spacing.semiLarge,
                 horizontal = MaterialTheme.spacing.semiSmall
-            ),
+            )
+            .clickable {
+                navController.navigate(Screen.ProductDetail.withArgs(amazingItem._id)) {
+
+                }
+            },
         shape = MaterialTheme.roundedShape.small,
         colors = CardDefaults.cardColors(MaterialTheme.colorScheme.cardBackground),
     ) {
@@ -212,8 +220,8 @@ fun AmazingOfferItem(amazingItem: AmazingItem) {
 @Composable
 fun currencyLogoChangeByLanguage(): Painter {
     return if (Constants.USER_LANGUAGE == Constants.ENGLISH_LANG) {
-        painterResource(id =R.drawable.dollar)
+        painterResource(id = R.drawable.dollar)
     } else {
-        painterResource(id =R.drawable.toman)
+        painterResource(id = R.drawable.toman)
     }
 }

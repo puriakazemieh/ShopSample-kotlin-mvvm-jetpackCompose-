@@ -69,8 +69,8 @@ fun AmazingOfferSection(
         ) {
             item { AmazingOfferCard(R.drawable.amazings, R.drawable.box) }
 
-            items(amazingItemList){
-                AmazingOfferItem(it)
+            items(amazingItemList) {
+                AmazingOfferItem(amazingItem = it, navController = navController)
             }
             item { AmazingShowMore() }
         }

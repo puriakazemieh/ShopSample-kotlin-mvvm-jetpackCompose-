@@ -16,6 +16,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,6 +42,7 @@ import com.kazemieh.www.shop.util.DigitHelper
 import com.kazemieh.www.shop.util.ZarinpalPurchase
 import com.kazemieh.www.shop.viewmodel.BasketViewModel
 import com.kazemieh.www.shop.viewmodel.CheckoutViewModel
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun ConfirmPurchaseScreen(
@@ -57,18 +60,21 @@ fun ConfirmPurchaseScreen(
     }
 
 
-    ZarinpalPurchase.fakePurchase(activity, orderPrice.toLong(), "خرید تستی") { transitionId ->
-        orderState = context.getString(R.string.purchase_is_ok)
-        basketViewModel.deleteAllItems()
-        checkoutViewModel.confirmPurchase(
-            ConfirmPurchase(
-                token = USER_TOKEN,
-                transactionId = transitionId,
-                orderId = orderId
+    LaunchedEffect(key1 = true) {
+        ZarinpalPurchase.fakePurchase(activity, orderPrice.toLong(), "خرید تستی") { transitionId ->
+            orderState = context.getString(R.string.purchase_is_ok)
+            basketViewModel.deleteAllItems()
+            checkoutViewModel.confirmPurchase(
+                ConfirmPurchase(
+                    token = USER_TOKEN,
+                    transactionId = transitionId,
+                    orderId = orderId
+                )
             )
-        )
-        Log.d("949494", " transitionId = $transitionId ")
+            Log.d("949494", " transitionId = $transitionId ")
+        }
     }
+
 
 
 

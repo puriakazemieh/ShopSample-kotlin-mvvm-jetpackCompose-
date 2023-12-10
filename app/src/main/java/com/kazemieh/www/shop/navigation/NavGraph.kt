@@ -14,12 +14,13 @@ import com.kazemieh.www.shop.ui.screens.SplashScreen
 import com.kazemieh.www.shop.ui.screens.checkout.CheckoutScreen
 import com.kazemieh.www.shop.ui.screens.checkout.ConfirmPurchaseScreen
 import com.kazemieh.www.shop.ui.screens.home.WebPageScreen
+import com.kazemieh.www.shop.ui.screens.productdetail.ProductDetailScreen
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Checkout.route
+        startDestination = Screen.ProductDetail.route+ "/{63b9f7ce06661704dc22228d}"
     ) {
 
         composable(route = Screen.Splash.route) {
@@ -86,6 +87,26 @@ fun SetupNavGraph(navController: NavHostController) {
                 }
             }
         }
+
+        composable(
+            route = Screen.ProductDetail.route + "/{productId}",
+            arguments = listOf(
+                navArgument("productId") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                }
+            )
+        ) {
+
+            it.arguments?.getString("productId")?.let { productId ->
+                ProductDetailScreen(
+                    navController = navController,
+                    productId=productId
+                )
+            }
+        }
+
 
     }
 }
