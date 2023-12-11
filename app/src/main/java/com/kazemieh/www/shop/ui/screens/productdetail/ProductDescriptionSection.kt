@@ -44,13 +44,19 @@ import com.kazemieh.www.shop.ui.theme.unSelectedBottomBar
 @Composable
 fun ProductDescriptionSection(
     navController: NavController,
-    description: String
+    description: String,
+    technicalFeatures: String,
 ) {
 
 
     var isDescription by remember { mutableStateOf(true) }
     if (description.isBlank()) {
         isDescription = false
+    }
+
+    var isTechnicalFeatures by remember { mutableStateOf(true) }
+    if (technicalFeatures == "null") {
+        isTechnicalFeatures = false
     }
 
 
@@ -82,31 +88,39 @@ fun ProductDescriptionSection(
             .background(MaterialTheme.colorScheme.grayCategory)
     )
 
-
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { }
-            .padding(
-                horizontal = MaterialTheme.spacing.medium,
-                vertical = MaterialTheme.spacing.medium
-            ),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            style = MaterialTheme.typography.bodySmall,
-            fontWeight = FontWeight.Bold,
-            text = stringResource(id = R.string.technical_specifications),
-            color = MaterialTheme.colorScheme.darkText,
-        )
-        Icon(
-            Icons.Outlined.KeyboardArrowLeft,
-            contentDescription = "",
-            modifier = Modifier.size(24.dp),
-            tint = MaterialTheme.colorScheme.searchBarBg
-        )
+    if (isTechnicalFeatures) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    navController.navigate(
+                        Screen.ProductTechnicalFeatures.withArgs(
+                            technicalFeatures
+                        )
+                    )
+                }
+                .padding(
+                    horizontal = MaterialTheme.spacing.medium,
+                    vertical = MaterialTheme.spacing.medium
+                ),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                style = MaterialTheme.typography.bodySmall,
+                fontWeight = FontWeight.Bold,
+                text = stringResource(id = R.string.technical_specifications),
+                color = MaterialTheme.colorScheme.darkText,
+            )
+            Icon(
+                Icons.Outlined.KeyboardArrowLeft,
+                contentDescription = "",
+                modifier = Modifier.size(24.dp),
+                tint = MaterialTheme.colorScheme.searchBarBg
+            )
+        }
     }
+
 
 
     if (isDescription) {

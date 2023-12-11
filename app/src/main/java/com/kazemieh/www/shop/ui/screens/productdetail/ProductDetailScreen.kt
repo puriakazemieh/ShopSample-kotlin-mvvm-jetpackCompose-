@@ -45,12 +45,20 @@ fun ProductDetailScreen(
         mutableStateOf(false)
     }
 
+    var description by remember { mutableStateOf("") }
+
+    var technicalFeatures by remember { mutableStateOf("") }
+
+
     LaunchedEffect(true) {
         viewModel.getProductById(productId)
         viewModel.productDetail.collectLatest { productDetail ->
             when (productDetail) {
                 is NetworkResult.Success -> {
-                    productDetailList = productDetail.data!!
+                    productDetailList = productDetail.data ?: ProductDetail()
+                    description = productDetail.data?.description ?: ""
+                    technicalFeatures = productDetail.data?.technicalFeatures.toString()
+
                     productDetailList.name?.let { Log.d("949494", it) }
                     loading = false
                 }
@@ -83,12 +91,7 @@ fun ProductDetailScreen(
                 item { productDetailList.colors?.let { it1 -> ProductSelectColorSection(it1) } }
                 item { SellerInfoSection() }
                 item { productDetailList.categoryId?.let { it1 -> SimilarProductSection(it1) } }
-                item { productDetailList.description?.let { it1 ->
-                    ProductDescriptionSection(navController ,
-                        it1
-                    )
-                } }
-
+                item { ProductDescriptionSection(navController, description, technicalFeatures) }
                 item { Text(text = productId) }
                 item { Spacer(modifier = Modifier.height(80.dp)) }
             }

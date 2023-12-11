@@ -16,12 +16,13 @@ import com.kazemieh.www.shop.ui.screens.checkout.ConfirmPurchaseScreen
 import com.kazemieh.www.shop.ui.screens.home.WebPageScreen
 import com.kazemieh.www.shop.ui.screens.productdetail.ProductDescriptionScreen
 import com.kazemieh.www.shop.ui.screens.productdetail.ProductDetailScreen
+import com.kazemieh.www.shop.ui.screens.productdetail.ProductTechnicalFeaturesScreen
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.ProductDetail.route+ "/{63b9f7ce06661704dc22228d}"
+        startDestination = Screen.ProductDetail.route + "/{63b9f7ce06661704dc22228d}"
     ) {
 
         composable(route = Screen.Splash.route) {
@@ -103,7 +104,7 @@ fun SetupNavGraph(navController: NavHostController) {
             it.arguments?.getString("productId")?.let { productId ->
                 ProductDetailScreen(
                     navController = navController,
-                    productId=productId
+                    productId = productId
                 )
             }
         }
@@ -122,7 +123,26 @@ fun SetupNavGraph(navController: NavHostController) {
             it.arguments?.getString("description")?.let { description ->
                 ProductDescriptionScreen(
                     navController = navController,
-                    description=description
+                    description = description
+                )
+            }
+        }
+
+        composable(
+            route = Screen.ProductTechnicalFeatures.route + "/{jsonString}",
+            arguments = listOf(
+                navArgument("jsonString") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                }
+            )
+        ) {
+
+            it.arguments?.getString("jsonString")?.let { jsonString ->
+                ProductTechnicalFeaturesScreen(
+                    navController = navController,
+                    jsonString = jsonString
                 )
             }
         }

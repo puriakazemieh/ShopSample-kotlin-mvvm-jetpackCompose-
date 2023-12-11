@@ -1,5 +1,8 @@
 package com.kazemieh.www.shop.data.model.productdetail
 
+import com.google.gson.JsonObject
+import org.json.JSONObject
+
 
 data class ProductDetail(
     val _id: String? = null,
@@ -19,7 +22,8 @@ data class ProductDetail(
     val agreePercent: Int? = null,
     val imageSlider: List<SliderImage>? = null,
     val colors: List<ProductColor>? = null,
-    val comments: List<Comment>? = null
+    val comments: List<Comment>? = null,
+    val technicalFeatures:JsonObject?=null
 )
 
 data class SliderImage(

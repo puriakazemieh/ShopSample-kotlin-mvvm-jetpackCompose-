@@ -59,10 +59,12 @@ fun SimilarProductSection(
                     similarList = similarListResult.data ?: emptyList()
                     loading = false
                 }
+
                 is NetworkResult.Error -> {
                     loading = false
                     Log.e("3636", "SimilarProductSection error : ${similarListResult.message}")
                 }
+
                 is NetworkResult.Loading -> {
                     loading = true
                 }

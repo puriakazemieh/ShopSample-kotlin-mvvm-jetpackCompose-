@@ -11,6 +11,7 @@ sealed class Screen(val route: String) {
     data object ConfirmPurchase : Screen("ConfirmPurchase_screen")
     data object ProductDetail : Screen("ProductDetail_screen")
     data object ProductDescription : Screen("ProductDescription_screen")
+    data object ProductTechnicalFeatures : Screen("ProductTechnicalFeatures_screen")
 
     fun withArgs(vararg args: Any): String {
         return buildString {
