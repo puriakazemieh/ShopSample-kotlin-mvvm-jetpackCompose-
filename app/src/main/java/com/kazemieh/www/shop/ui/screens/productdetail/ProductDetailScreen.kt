@@ -2,7 +2,11 @@ package com.kazemieh.www.shop.ui.screens.productdetail
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -18,6 +23,7 @@ import androidx.navigation.NavController
 import com.kazemieh.www.shop.data.model.productdetail.ProductDetail
 import com.kazemieh.www.shop.data.remote.NetworkResult
 import com.kazemieh.www.shop.ui.component.OurLoading
+import com.kazemieh.www.shop.ui.theme.spacing
 import com.kazemieh.www.shop.viewmodel.ProductDetailViewModel
 import kotlinx.coroutines.flow.collectLatest
 
@@ -73,10 +79,18 @@ fun ProductDetailScreen(
         ) {
             LazyColumn() {
                 item { productDetailList.imageSlider?.let { it1 -> ProductTopSliderSection(it1) } }
-                item {ProductDetailHeaderSection(productDetailList)  }
+                item { ProductDetailHeaderSection(productDetailList) }
                 item { productDetailList.colors?.let { it1 -> ProductSelectColorSection(it1) } }
-                item { SellerInfoSection()}
+                item { SellerInfoSection() }
+                item { productDetailList.categoryId?.let { it1 -> SimilarProductSection(it1) } }
+                item { productDetailList.description?.let { it1 ->
+                    ProductDescriptionSection(navController ,
+                        it1
+                    )
+                } }
+
                 item { Text(text = productId) }
+                item { Spacer(modifier = Modifier.height(80.dp)) }
             }
         }
     }

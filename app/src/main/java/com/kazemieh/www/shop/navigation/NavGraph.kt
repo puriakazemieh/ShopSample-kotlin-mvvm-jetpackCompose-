@@ -14,6 +14,7 @@ import com.kazemieh.www.shop.ui.screens.SplashScreen
 import com.kazemieh.www.shop.ui.screens.checkout.CheckoutScreen
 import com.kazemieh.www.shop.ui.screens.checkout.ConfirmPurchaseScreen
 import com.kazemieh.www.shop.ui.screens.home.WebPageScreen
+import com.kazemieh.www.shop.ui.screens.productdetail.ProductDescriptionScreen
 import com.kazemieh.www.shop.ui.screens.productdetail.ProductDetailScreen
 
 @Composable
@@ -103,6 +104,25 @@ fun SetupNavGraph(navController: NavHostController) {
                 ProductDetailScreen(
                     navController = navController,
                     productId=productId
+                )
+            }
+        }
+
+        composable(
+            route = Screen.ProductDescription.route + "/{description}",
+            arguments = listOf(
+                navArgument("description") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                }
+            )
+        ) {
+
+            it.arguments?.getString("description")?.let { description ->
+                ProductDescriptionScreen(
+                    navController = navController,
+                    description=description
                 )
             }
         }
