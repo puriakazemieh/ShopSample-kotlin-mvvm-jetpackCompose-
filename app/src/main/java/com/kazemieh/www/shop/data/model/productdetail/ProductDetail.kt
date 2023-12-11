@@ -43,6 +43,7 @@ data class Comment(
     val title: String,
     val description: String,
     val productId: String,
+    val star: Int,
     val userId: String,
     val userName: String,
     val updatedAt: String,

@@ -103,3 +103,7 @@ val ColorScheme.grayAlpha: Color
     @Composable
     get() = Color(0xFFc1c2c6)
 
+
+val ColorScheme.Green : Color
+    @Composable
+    get() = Color(0xFF00A049)

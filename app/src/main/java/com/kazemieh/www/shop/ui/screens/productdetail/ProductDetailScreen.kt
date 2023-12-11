@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.kazemieh.www.shop.data.model.productdetail.Comment
 import com.kazemieh.www.shop.data.model.productdetail.ProductDetail
 import com.kazemieh.www.shop.data.remote.NetworkResult
 import com.kazemieh.www.shop.ui.component.OurLoading
@@ -46,8 +47,11 @@ fun ProductDetailScreen(
     }
 
     var description by remember { mutableStateOf("") }
-
     var technicalFeatures by remember { mutableStateOf("") }
+    var commentCount by remember { mutableStateOf(0) }
+    var productComments by remember {
+        mutableStateOf<List<Comment>>(emptyList())
+    }
 
 
     LaunchedEffect(true) {
@@ -58,6 +62,8 @@ fun ProductDetailScreen(
                     productDetailList = productDetail.data ?: ProductDetail()
                     description = productDetail.data?.description ?: ""
                     technicalFeatures = productDetail.data?.technicalFeatures.toString()
+                    productComments = productDetail.data?.comments ?: emptyList()
+                    commentCount = productDetail.data?.commentCount ?: 0
 
                     productDetailList.name?.let { Log.d("949494", it) }
                     loading = false
@@ -92,7 +98,9 @@ fun ProductDetailScreen(
                 item { SellerInfoSection() }
                 item { productDetailList.categoryId?.let { it1 -> SimilarProductSection(it1) } }
                 item { ProductDescriptionSection(navController, description, technicalFeatures) }
+                item { ProductCommentsSection(productComments, commentCount) }
                 item { Text(text = productId) }
+
                 item { Spacer(modifier = Modifier.height(80.dp)) }
             }
         }
