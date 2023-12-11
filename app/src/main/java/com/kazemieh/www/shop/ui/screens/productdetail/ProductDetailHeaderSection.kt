@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,6 +23,7 @@ import com.kazemieh.www.shop.ui.theme.Gold
 import com.kazemieh.www.shop.ui.theme.LightCyan
 import com.kazemieh.www.shop.ui.theme.darkText
 import com.kazemieh.www.shop.ui.theme.grayAlpha
+import com.kazemieh.www.shop.ui.theme.grayCategory
 import com.kazemieh.www.shop.ui.theme.semiDarkText
 import com.kazemieh.www.shop.ui.theme.spacing
 import com.kazemieh.www.shop.util.DigitHelper.digitByLocate
@@ -32,43 +34,17 @@ fun ProductDetailHeaderSection(
     item: ProductDetail
 ) {
 
-    var category = ""
-    item.category?.let {
-        category = it
-    }
-
-    var name = ""
-    item.name?.let {
-        name = it
-    }
-    var star = 0.0
-    item.star?.let {
-        star = it
-    }
-    var starCount = 0
-    item.starCount?.let {
-        starCount = it
-    }
-    var commentCount = 0
-    item.commentCount?.let {
-        commentCount = it
-    }
-
-    var viewCount = 0
-    item.viewCount?.let {
-        viewCount = it
-    }
 
     Column {
         Text(
-            text = "${stringResource(id = R.string.category)} / $category",
+            text = "${stringResource(id = R.string.category)} / ${item.category}",
             color = MaterialTheme.colorScheme.DarkCyan,
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium)
         )
 
         Text(
-            text = name,
+            text = item.name.toString(),
             color = MaterialTheme.colorScheme.darkText,
             style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.Bold,
@@ -92,13 +68,13 @@ fun ProductDetailHeaderSection(
                 tint = MaterialTheme.colorScheme.Gold
             )
             Text(
-                text = digitByLocate(star.toString()),
+                text = digitByLocate(item.star.toString()),
                 color = MaterialTheme.colorScheme.semiDarkText,
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.padding(horizontal = 2.dp)
             )
             Text(
-                text = digitByLocate("($starCount)"),
+                text = digitByLocate("(${item.starCount})"),
                 color = MaterialTheme.colorScheme.grayAlpha,
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.padding(end = MaterialTheme.spacing.small)
@@ -114,7 +90,7 @@ fun ProductDetailHeaderSection(
             )
 
             Text(
-                text = digitByLocate("$commentCount ${stringResource(R.string.user_comments)}"),
+                text = digitByLocate("${item.commentCount} ${stringResource(R.string.user_comments)}"),
                 color = MaterialTheme.colorScheme.DarkCyan,
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small),
@@ -129,7 +105,7 @@ fun ProductDetailHeaderSection(
                     .padding(horizontal = 1.dp)
             )
             Text(
-                text = digitByLocate("$viewCount ${stringResource(R.string.view)}"),
+                text = digitByLocate("${item.viewCount} ${stringResource(R.string.view)}"),
                 color = MaterialTheme.colorScheme.DarkCyan,
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small),
@@ -160,5 +136,12 @@ fun ProductDetailHeaderSection(
                 modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small)
             )
         }
+
+        Divider(
+            color = MaterialTheme.colorScheme.grayCategory,
+            thickness = 1.dp,
+            modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium))
+
+
     }
 }

@@ -74,6 +74,8 @@ fun ProductDetailScreen(
             LazyColumn() {
                 item { productDetailList.imageSlider?.let { it1 -> ProductTopSliderSection(it1) } }
                 item {ProductDetailHeaderSection(productDetailList)  }
+                item { productDetailList.colors?.let { it1 -> ProductSelectColorSection(it1) } }
+                item { SellerInfoSection()}
                 item { Text(text = productId) }
             }
         }
