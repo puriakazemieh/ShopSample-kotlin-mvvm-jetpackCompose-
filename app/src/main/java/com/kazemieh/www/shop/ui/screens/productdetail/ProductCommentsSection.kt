@@ -1,5 +1,6 @@
 package com.kazemieh.www.shop.ui.screens.productdetail
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,15 +20,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.data.model.productdetail.Comment
+import com.kazemieh.www.shop.navigation.Screen
 import com.kazemieh.www.shop.ui.theme.LightCyan
 import com.kazemieh.www.shop.ui.theme.darkText
 import com.kazemieh.www.shop.ui.theme.spacing
+import com.kazemieh.www.shop.util.DigitHelper
+import com.kazemieh.www.shop.util.DigitHelper.digitByLocate
+import com.kazemieh.www.shop.util.DigitHelper.digitByLocateAndSeparator
 
 
 @Composable
 fun ProductCommentsSection(
+    navController: NavController,
+    productId: String,
     comments: List<Comment>,
     commentCount: Int
 ) {
@@ -44,7 +53,9 @@ fun ProductCommentsSection(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth().clickable {
+                navController.navigate(Screen.AllComment.withArgs(productId))
+            }
     ) {
         Row(
             modifier = Modifier
@@ -59,7 +70,7 @@ fun ProductCommentsSection(
                 style = MaterialTheme.typography.headlineLarge,
             )
             Text(
-                text = "$commentCount " + stringResource(R.string.comment),
+                text = "${digitByLocate(commentCount.toString())} " + stringResource(R.string.comment),
                 color = MaterialTheme.colorScheme.LightCyan,
                 style = MaterialTheme.typography.labelSmall,
             )

@@ -121,4 +121,7 @@ dependencies {
     //zarinpal
     implementation (libs.payment.provider.ktx)
 
+    //paging
+    implementation (libs.androidx.paging.compose)
+
 }

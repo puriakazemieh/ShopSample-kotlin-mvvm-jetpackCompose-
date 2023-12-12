@@ -34,6 +34,7 @@ import com.kazemieh.www.shop.ui.theme.grayAlpha
 import com.kazemieh.www.shop.ui.theme.roundedShape
 import com.kazemieh.www.shop.ui.theme.semiDarkText
 import com.kazemieh.www.shop.ui.theme.spacing
+import com.kazemieh.www.shop.util.DigitHelper.digitByLocate
 import com.kazemieh.www.shop.util.DigitHelper.gregorianToJalali
 
 
@@ -145,7 +146,7 @@ fun TextCommentCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = gregorianToJalali(year, month, day),
+                    text = digitByLocate(gregorianToJalali(year, month, day)),
                     color = MaterialTheme.colorScheme.semiDarkText,
                     style = MaterialTheme.typography.headlineLarge,
                 )

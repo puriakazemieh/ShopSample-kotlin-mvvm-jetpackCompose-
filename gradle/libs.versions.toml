@@ -11,6 +11,7 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.6.2"
 activityCompose = "1.8.0"
 composeBom = "2023.10.01"
+pagingCompose = "3.2.1"
 paymentProviderKtx = "0.5.3"
 retrofit = "2.9.0"
 logging-interceptor = "4.11.0"
@@ -28,6 +29,7 @@ toolbarCompose = "2.1.0"
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwiperefresh" }
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

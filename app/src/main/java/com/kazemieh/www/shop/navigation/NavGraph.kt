@@ -14,6 +14,7 @@ import com.kazemieh.www.shop.ui.screens.SplashScreen
 import com.kazemieh.www.shop.ui.screens.checkout.CheckoutScreen
 import com.kazemieh.www.shop.ui.screens.checkout.ConfirmPurchaseScreen
 import com.kazemieh.www.shop.ui.screens.home.WebPageScreen
+import com.kazemieh.www.shop.ui.screens.productdetail.AllProductCommentsScreen
 import com.kazemieh.www.shop.ui.screens.productdetail.NewCommentScreen
 import com.kazemieh.www.shop.ui.screens.productdetail.ProductDescriptionScreen
 import com.kazemieh.www.shop.ui.screens.productdetail.ProductDetailScreen
@@ -184,6 +185,23 @@ fun SetupNavGraph(navController: NavHostController) {
 
         }
 
+        composable(route = Screen.AllComment.route + "/{productId}",
+            arguments = listOf(
+                navArgument("productId") {
+                    type = NavType.StringType
+                    defaultValue = " "
+                    nullable = true
+                }
+            )
+        ) {
+            it.arguments!!.getString("productId")?.let { productId ->
+                AllProductCommentsScreen(
+                    navController = navController,
+                    productId = productId
+                )
+            }
+
+        }
 
 
     }
