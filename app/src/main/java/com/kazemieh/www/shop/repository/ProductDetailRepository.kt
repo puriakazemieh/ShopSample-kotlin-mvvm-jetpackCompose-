@@ -1,6 +1,7 @@
 package com.kazemieh.www.shop.repository
 
 import com.kazemieh.www.shop.data.model.home.StoreProduct
+import com.kazemieh.www.shop.data.model.productdetail.NewComment
 import com.kazemieh.www.shop.data.model.productdetail.ProductDetail
 import com.kazemieh.www.shop.data.remote.BaseApiResponse
 import com.kazemieh.www.shop.data.remote.NetworkResult
@@ -21,5 +22,10 @@ class ProductDetailRepository @Inject constructor(private val api: ProductDetail
             api.getSimilarProducts(categoryId)
         }
 
+
+    suspend fun setNewComment(newComment: NewComment): NetworkResult<String> =
+        safeApiCall {
+            api.setNewComment(newComment)
+        }
 
 }

@@ -92,6 +92,7 @@ fun ProductDetailScreen(
             }
         ) {
             LazyColumn() {
+                item { ProductSetCommentsSection(navController, productDetailList) }
                 item { productDetailList.imageSlider?.let { it1 -> ProductTopSliderSection(it1) } }
                 item { ProductDetailHeaderSection(productDetailList) }
                 item { productDetailList.colors?.let { it1 -> ProductSelectColorSection(it1) } }
@@ -99,6 +100,7 @@ fun ProductDetailScreen(
                 item { productDetailList.categoryId?.let { it1 -> SimilarProductSection(it1) } }
                 item { ProductDescriptionSection(navController, description, technicalFeatures) }
                 item { ProductCommentsSection(productComments, commentCount) }
+
                 item { Text(text = productId) }
 
                 item { Spacer(modifier = Modifier.height(80.dp)) }

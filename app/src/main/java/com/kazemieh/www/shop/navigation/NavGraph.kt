@@ -14,6 +14,7 @@ import com.kazemieh.www.shop.ui.screens.SplashScreen
 import com.kazemieh.www.shop.ui.screens.checkout.CheckoutScreen
 import com.kazemieh.www.shop.ui.screens.checkout.ConfirmPurchaseScreen
 import com.kazemieh.www.shop.ui.screens.home.WebPageScreen
+import com.kazemieh.www.shop.ui.screens.productdetail.NewCommentScreen
 import com.kazemieh.www.shop.ui.screens.productdetail.ProductDescriptionScreen
 import com.kazemieh.www.shop.ui.screens.productdetail.ProductDetailScreen
 import com.kazemieh.www.shop.ui.screens.productdetail.ProductTechnicalFeaturesScreen
@@ -146,6 +147,43 @@ fun SetupNavGraph(navController: NavHostController) {
                 )
             }
         }
+
+
+        composable(route = Screen.NewComment.route + "?productId={productId}?productName={productName}?imageUrl={imageUrl}",
+            arguments = listOf(
+                navArgument("productId") {
+                    type = NavType.StringType
+                    defaultValue = " "
+                    nullable = true
+                },
+                navArgument("productName") {
+                    type = NavType.StringType
+                    defaultValue = " "
+                    nullable = true
+                },
+                navArgument("imageUrl") {
+                    type = NavType.StringType
+                    defaultValue = " "
+                    nullable = true
+                }
+            )
+        ) {
+            it.arguments?.getString("productId")?.let { productId ->
+                it.arguments?.getString("productName")?.let { productName ->
+                    it.arguments?.getString("imageUrl")?.let { imageUrl ->
+                        NewCommentScreen(
+                            navController = navController,
+                            productId = productId,
+                            productName = productName,
+                            imageUrl = imageUrl
+                        )
+                    }
+                }
+            }
+
+
+        }
+
 
 
     }

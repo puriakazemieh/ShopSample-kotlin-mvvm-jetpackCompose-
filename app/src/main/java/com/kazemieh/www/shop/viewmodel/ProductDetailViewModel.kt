@@ -3,6 +3,7 @@ package com.kazemieh.www.shop.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kazemieh.www.shop.data.model.home.StoreProduct
+import com.kazemieh.www.shop.data.model.productdetail.NewComment
 import com.kazemieh.www.shop.data.model.productdetail.ProductDetail
 import com.kazemieh.www.shop.data.remote.NetworkResult
 import com.kazemieh.www.shop.repository.ProductDetailRepository
@@ -33,4 +34,15 @@ class ProductDetailViewModel @Inject constructor(private val repository: Product
             similarProducts.emit(repository.getSimilarProducts(categoryId))
         }
     }
+
+
+    val newCommentResult =
+        MutableStateFlow<NetworkResult<String>>(NetworkResult.Loading())
+    fun setNewComment(newComment: NewComment) {
+        viewModelScope.launch {
+            newCommentResult.emit(repository.setNewComment(newComment))
+        }
+    }
+
+
 }
