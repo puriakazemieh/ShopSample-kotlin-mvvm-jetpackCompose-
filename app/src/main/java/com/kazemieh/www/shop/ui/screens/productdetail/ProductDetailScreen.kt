@@ -64,8 +64,6 @@ fun ProductDetailScreen(
                     technicalFeatures = productDetail.data?.technicalFeatures.toString()
                     productComments = productDetail.data?.comments ?: emptyList()
                     commentCount = productDetail.data?.commentCount ?: 0
-
-                    productDetailList.name?.let { Log.d("949494", it) }
                     loading = false
                 }
 
@@ -92,18 +90,21 @@ fun ProductDetailScreen(
             }
         ) {
             LazyColumn() {
-                item { ProductCommentsSection(navController , productId , productComments, commentCount) }
                 item { productDetailList.imageSlider?.let { it1 -> ProductTopSliderSection(it1) } }
                 item { ProductDetailHeaderSection(productDetailList) }
                 item { productDetailList.colors?.let { it1 -> ProductSelectColorSection(it1) } }
                 item { SellerInfoSection() }
                 item { productDetailList.categoryId?.let { it1 -> SimilarProductSection(it1) } }
                 item { ProductDescriptionSection(navController, description, technicalFeatures) }
-//                item { ProductCommentsSection(navController , productId , productComments, commentCount) }
+                item {
+                    ProductCommentsSection(
+                        navController,
+                        productId,
+                        productComments,
+                        commentCount.toString()
+                    )
+                }
                 item { ProductSetCommentsSection(navController, productDetailList) }
-
-                item { Text(text = productId) }
-
                 item { Spacer(modifier = Modifier.height(80.dp)) }
             }
         }

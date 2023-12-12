@@ -38,7 +38,7 @@ fun ProductCommentsSection(
     navController: NavController,
     productId: String,
     comments: List<Comment>,
-    commentCount: Int
+    commentCount: String
 ) {
 
 
@@ -53,8 +53,10 @@ fun ProductCommentsSection(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth().clickable {
-                navController.navigate(Screen.AllComment.withArgs(productId))
+            .fillMaxWidth()
+            .clickable {
+                navController.navigate(Screen.AllComment.withArgs(productId, commentCount))
+
             }
     ) {
         Row(
@@ -70,7 +72,7 @@ fun ProductCommentsSection(
                 style = MaterialTheme.typography.headlineLarge,
             )
             Text(
-                text = "${digitByLocate(commentCount.toString())} " + stringResource(R.string.comment),
+                text = "${digitByLocate(commentCount)} " + stringResource(R.string.comment),
                 color = MaterialTheme.colorScheme.LightCyan,
                 style = MaterialTheme.typography.labelSmall,
             )
@@ -82,9 +84,12 @@ fun ProductCommentsSection(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = MaterialTheme.spacing.medium),
-    ){
-        items(comments){ comment ->
+    ) {
+        items(comments) { comment ->
             TextCommentCard(comment)
+        }
+        item {
+            CommentShowMoreItem(navController, productId, commentCount)
         }
     }
 

@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.kazemieh.www.shop.R
 import com.kazemieh.www.shop.navigation.Screen
@@ -30,8 +31,9 @@ import com.kazemieh.www.shop.ui.theme.spacing
 
 @Composable
 fun CommentShowMoreItem(
-    navController: NavHostController,
+    navController: NavController,
     productId: String,
+    commentCount: String,
 ) {
 
     Column(
@@ -42,7 +44,7 @@ fun CommentShowMoreItem(
             .height(240.dp)
             .padding(vertical = MaterialTheme.spacing.medium)
             .clickable {
-                navController.navigate(Screen.AllComment.withArgs(productId))
+                navController.navigate(Screen.AllComment.withArgs(productId,commentCount))
             }
 
     ) {

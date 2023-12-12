@@ -1,6 +1,7 @@
 package com.kazemieh.www.shop.repository
 
 import com.kazemieh.www.shop.data.model.home.StoreProduct
+import com.kazemieh.www.shop.data.model.productdetail.Comment
 import com.kazemieh.www.shop.data.model.productdetail.NewComment
 import com.kazemieh.www.shop.data.model.productdetail.ProductDetail
 import com.kazemieh.www.shop.data.remote.BaseApiResponse
@@ -26,6 +27,15 @@ class ProductDetailRepository @Inject constructor(private val api: ProductDetail
     suspend fun setNewComment(newComment: NewComment): NetworkResult<String> =
         safeApiCall {
             api.setNewComment(newComment)
+        }
+
+    suspend fun getAllProductComments(
+        id: String,
+        pageSize: String,
+        pageNumber: String,
+    ): NetworkResult<List<Comment>> =
+        safeApiCall {
+            api.getAllProductComments(id , pageSize , pageNumber )
         }
 
 }

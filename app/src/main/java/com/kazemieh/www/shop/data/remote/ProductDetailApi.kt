@@ -2,6 +2,7 @@ package com.kazemieh.www.shop.data.remote
 
 import com.kazemieh.www.shop.data.model.ResponseResult
 import com.kazemieh.www.shop.data.model.home.StoreProduct
+import com.kazemieh.www.shop.data.model.productdetail.Comment
 import com.kazemieh.www.shop.data.model.productdetail.NewComment
 import com.kazemieh.www.shop.data.model.productdetail.ProductDetail
 import retrofit2.Response
@@ -25,5 +26,12 @@ interface ProductDetailApi {
     suspend fun setNewComment(
         @Body newComment: NewComment
     ): Response<ResponseResult<String>>
+
+    @GET("/api/v1/getAllProductComments")
+    suspend fun getAllProductComments(
+        @Query("id") id: String,
+        @Query("pageSize") pageSize: String,
+        @Query("pageNumber") pageNumber: String,
+    ): Response<ResponseResult<List<Comment>>>
 
 }
